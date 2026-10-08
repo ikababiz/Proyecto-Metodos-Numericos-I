@@ -1,8 +1,19 @@
+import json
+from pathlib import Path
+
+from Asistencia import TablaAsistencia # se importa la clase de tabla, de igual forma se pueden importar las clases de cada metodo numerico y usarlas desde un mismo programa
+
+from graficador import Graficador # graficador de prueba hecha por mi compa Cloude
 import sys
 from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QWidget, QPushButton, QLineEdit, QTextEdit, QComboBox, \
     QVBoxLayout, QListWidget, QCheckBox, QRadioButton, QSlider, QMessageBox
 from PySide6.QtCore import Qt, QFile
 from PySide6.QtUiTools import QUiLoader # para Qt Design
+
+ATTENDANCE = 15 # constante para asistencias de la tabla de ejemplo
+
+
+ARCHIVO = Path(__file__).with_name("Asistencias.json") # para guardar archivos en formato json
 
 # widgets en ambientes de desarrollo de interfaces de usuario graficas (GUI) son los botones, casillas y otros aspectos vizuales interactuables
 class MainWindow(QMainWindow): # Clase de la ventana principal
@@ -34,16 +45,20 @@ class MainWindow(QMainWindow): # Clase de la ventana principal
         label = QLabel("Label") # Para simples titulos sin interaccion
         label.setAlignment(Qt.AlignCenter) # Se pueden alinear, pero Qt es mejor para disenio que hacerlo manual
 
-        button = QPushButton("Button")  # Boton presionable
+        button = QPushButton("Gráfica")  # Boton presionable, abre la grafica
         button.clicked.connect(self.do_something) # cuando das click llama una funcion, solo va el nombre de la funcion, sin parentesis ()
+        button.clicked.connect(self.open_window3) # llama toda la clase Graficador() de graficador.py
         #button.clicled.connect(lambda: print("Button clicked"))
 
         PopUp = QPushButton("Pop Up") # Boton simple
         PopUp.clicked.connect(self.ask) # llama la funcion ask
         #PopUp.clicked.connect(lambda: QMessageBox.information(self, "Window name", "Info of pop up"))
 
-        buttonW = QPushButton("Open secondary Window") # boton para abrir otra ventana
+        buttonW = QPushButton("Ventana de diseño") # boton para abrir otra ventana
         buttonW.clicked.connect(self.open_window) # llama la funcion open_window
+
+        buttonA = QPushButton("Tabla de asistencia")
+        buttonA.clicked.connect(self.open_window2)
 
         line_edit = QLineEdit() # es una simple linea para que el usuario escriba, como para pedir un dato, se puede ajustar el tamanio
         text_edit = QTextEdit() # una caja de texto para que el usuario escriba, se puede ajustar la cantidad de caracteres que caben
@@ -95,6 +110,7 @@ class MainWindow(QMainWindow): # Clase de la ventana principal
         layout.addWidget(button)
         layout.addWidget(PopUp)
         layout.addWidget(buttonW)
+        layout.addWidget(buttonA)
         layout.addWidget(line_edit)
         layout.addWidget(text_edit)
         layout.addWidget(slider)
@@ -136,20 +152,22 @@ class MainWindow(QMainWindow): # Clase de la ventana principal
         file.close() # una vez leido, cierra el archivo
         w.show() # muestra la ventana
 
+    def open_window2(self):
+        w2 = TablaAsistencia()  # del archivo Asistencia.py, la clase que hace la tabla
+        self.count += 1
+        self.windows.append(w2)  # se guarda para que Qt no la cierre
+        w2.show()
 
-class SecondaryWindow(QMainWindow): # otra clase para ventana sin formato
-    def __init__(self, n):
-        super().__init__()
-        self.setWindowTitle("Example Window 2")
+    def open_window3(self):
+        w3 = Graficador()  # del archivo graficador.py, la clase que hace la grafica
+        self.count += 1
+        self.windows.append(w3)  # se guarda para que Qt no la cierre
+        w3.show()
 
-        label = QLabel(f"Number {n}")
-        label.setAlignment(Qt.AlignCenter)
-
-        self.setCentralWidget(label)
 
 app = QApplication()
 
 window = MainWindow() # ventana principal
 window.show() # muestra la ventana
 
-app.exec_()
+app.exec()
