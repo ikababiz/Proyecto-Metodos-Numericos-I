@@ -1,5 +1,9 @@
 # Proyecto-Metodos-Numericos-I
-Repositorio para el proyecto de métodos numéricos I
+Repositorio para el proyecto de métodos numéricos I.
+
+En requirements.txt vienen todas las librerías necesarias para el proyecto.
+pip install -r requirements.txt
+
 Proyecto-Metodos-Numericos-I/
 ├── main.py                  ← menú principal
 ├── README.md                ← introducción al repositorio
