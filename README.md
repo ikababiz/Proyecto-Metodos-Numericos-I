@@ -12,11 +12,11 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Estructura del repositorio
+Estructura del repositorio  
 ├── main.py                  ← menú principal  
 ├── README.md                ← introducción al repositorio  
 ├── requirements.txt         ← bibliotecas necesarias a instalar (PySide6, Qt Designer, etc...)  
-├── .gitignore               ← los archivos más pesados que no se comparten 
+├── .gitignore               ← los archivos más pesados que no se comparten  
 ├── ejemplos/                ← Lo primero que subí  
 │   ├── TestGUI.py           ← **ESTE ES EL EJEMPLO IMPORTANTE**  
 │   ├── Asistencia.py  
