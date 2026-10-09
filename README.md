@@ -5,7 +5,7 @@ Repositorio para el proyecto de métodos numéricos I.
 - Se necesita Python instalado y las respectivas bibliotecas.
 - En requirements.txt vienen todas las bibliotecas necesarias para el proyecto.
 ```bash
-git clone git@github.com:ikababiz/Proyecto-Metodos-Numericos-I.git
+git clone -b Unidad_2 git@github.com:ikababiz/Proyecto-Metodos-Numericos-I.git
 cd Proyecto-Metodos-Numericos-I
 python3 -m venv .venv
 source .venv/bin/activate
