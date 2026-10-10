@@ -3,10 +3,10 @@ Repositorio para el proyecto de métodos numéricos I.
 
 ## Requisitos 
 - Se necesita Python instalado y las respectivas bibliotecas.
-- En requirements.txt vienen todas las bibliotecas necesarias para el proyecto.
+- En requirements.txt vienen todas las bibliotecas necesarias para el proyecto.  
+Los siguientes comandos clonan el repositorio para trabajar de manera local y preparan el ambiente gráfico.
 ```bash
-git clone -b Unidad_2 git@github.com:ikababiz/Proyecto-Metodos-Numericos-I.git
-cd Proyecto-Metodos-Numericos-I
+git clone git@github.com:ikababiz/Proyecto-Metodos-Numericos-I.gitcd Proyecto-Metodos-Numericos-I
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -24,8 +24,7 @@ Estructura del repositorio
 ├── recursos/  
 │   ├── ExampleGUI.ui  
 │   └── resources_rc.py      ← para imágenes  
-├── unidad2/                 ← WIP  
-│   ├── __init__.py  
+├── unidad2/                 ← WIP   
 │   ├── menu_unidad2.py      ← menú de la unidad  
 │   ├── biseccion.py  
 │   ├── regula_falsi.py  
