@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>60</y>
+     <width>511</width>
+     <height>541</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QPushButton" name="unidad2button">
+      <property name="text">
+       <string>Unidad 2</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="unidad3button">
+      <property name="text">
+       <string>Unidad 3</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="unidad4button">
+      <property name="text">
+       <string>Unidad 4</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="unidad5button">
+      <property name="text">
+       <string>Unidad 5</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="backbutton">
+      <property name="text">
+       <string>Regresar</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>0</y>
+     <width>141</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Menú Unidades</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
