@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>792</width>
+    <height>678</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>20</y>
+     <width>191</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Gauss/Gauss-Jordan</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="textEdit">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>100</y>
+     <width>431</width>
+     <height>171</height>
+    </rect>
+   </property>
+   <property name="html">
+    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu Bold'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsum&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="gaussRadio">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>330</y>
+     <width>129</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Gauss</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="gaussjordanRadio">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>380</y>
+     <width>129</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Gauss-Jordan</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="parcialBox">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>330</y>
+     <width>151</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Pivoteo parcial</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="totalBox">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>380</y>
+     <width>131</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Pivoteo total</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="calcButton">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>510</y>
+     <width>261</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Calcular soluciones del sistema</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pasosButton">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>550</y>
+     <width>131</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Mostrar pasos</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="matButton">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>470</y>
+     <width>151</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Ingresar matriz</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="unidad3button">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>610</y>
+     <width>103</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Regresar</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>430</y>
+     <width>171</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Tamaño de la matriz:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="tamEdit">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>430</y>
+     <width>41</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
