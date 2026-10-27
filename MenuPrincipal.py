@@ -8,7 +8,7 @@ from PySide6.QtCore import Qt, QFile
 from PySide6.QtUiTools import QUiLoader # para Qt Design
 
 from biseccion import MetodoBiseccion # se importa cada clase de cada metodo
-
+from Gauss import MetodoGauss
 
 CARPETA_UI = Path(__file__).parent # carpeta donde están los .ui (la misma que este archivo)
 # si se cambian las direcciones de archivos hay que cambiar la ruta
@@ -37,6 +37,9 @@ class MainWindow(QMainWindow):
         bis = MetodoBiseccion()
         self.agregar_pagina("Biseccion", bis)
 
+        gauss = MetodoGauss()
+        self.agregar_pagina("Gauss", gauss)
+
         # navegación: (página donde está el botón, nombre del botón, página destino)
         # el nombre del botón es su objectName en Qt Designer
         self.conectar("Introduccion", "menubutton", "Unidades")
@@ -46,14 +49,18 @@ class MainWindow(QMainWindow):
         self.conectar("Unidades", "unidad5button", "Unidad5")
         self.conectar("Unidades", "backbutton", "Introduccion")
 
+        # Unidad 2
         self.conectar("Unidad2", "menubutton", "Unidades")
-
         bis.volver.connect(lambda: self.ir_a("Unidad2")) # cuando se manda la señal
-
         self.conectar("Unidad2", "biseccionbutton", "Biseccion")
         self.conectar("Biseccion", "unidad2button", "Unidad2")
 
+        # Unidad 3
         self.conectar("Unidad3", "menubutton", "Unidades")
+        gauss.volver.connect(lambda: self.ir_a("Unidad3"))
+        self.conectar("Unidad3", "gaussbutton", "Gauss")
+        self.conectar("Gauss", "unidad3button", "Unidad3")
+
         self.conectar("Unidad4", "menubutton", "Unidades")
         self.conectar("Unidad5", "menubutton", "Unidades")
 
