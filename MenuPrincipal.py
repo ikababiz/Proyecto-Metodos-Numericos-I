@@ -9,6 +9,7 @@ from PySide6.QtUiTools import QUiLoader # para Qt Design
 
 from biseccion import MetodoBiseccion # se importa cada clase de cada metodo
 from Gauss import MetodoGauss
+from Doolittle import MetodoDoolittle
 
 CARPETA_UI = Path(__file__).parent # carpeta donde están los .ui (la misma que este archivo)
 # si se cambian las direcciones de archivos hay que cambiar la ruta
@@ -40,6 +41,9 @@ class MainWindow(QMainWindow):
         gauss = MetodoGauss()
         self.agregar_pagina("Gauss", gauss)
 
+        doo = MetodoDoolittle()
+        self.agregar_pagina("Doolittle", doo)
+
         # navegación: (página donde está el botón, nombre del botón, página destino)
         # el nombre del botón es su objectName en Qt Designer
         self.conectar("Introduccion", "menubutton", "Unidades")
@@ -61,10 +65,17 @@ class MainWindow(QMainWindow):
         self.conectar("Unidad3", "gaussbutton", "Gauss")
         self.conectar("Gauss", "unidad3button", "Unidad3")
 
+        # Unidad 4
         self.conectar("Unidad4", "menubutton", "Unidades")
+        self.conectar("Unidad4", "DoolittleButton", "Doolittle")
+        doo.volver.connect(lambda: self.ir_a("Unidad4"))
+
+        # Unidad 5
         self.conectar("Unidad5", "menubutton", "Unidades")
 
         self.ir_a("Introduccion") # Empieza de predeterminado en la intro
+        self.salir = self.paginas["Introduccion"].findChild(QWidget, "salirButton")
+        self.salir.clicked.connect(self.close)
 
 
     def agregar_pagina(self, nombre, pagina):
