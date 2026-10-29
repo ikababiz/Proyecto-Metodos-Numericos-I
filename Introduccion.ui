@@ -153,6 +153,19 @@ p, li { white-space: pre-wrap; }
      <string>Ir al Menú Principal</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="salirButton">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>520</y>
+      <width>103</width>
+      <height>33</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Salir</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

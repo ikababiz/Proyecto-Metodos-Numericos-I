@@ -35,16 +35,23 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="inversabutton">
+     <widget class="QPushButton" name="gaussbutton">
       <property name="text">
-       <string>Inversa</string>
+       <string>Gauss/Gauss-Jordan</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="gaussbutton">
+     <widget class="QPushButton" name="jacobibutton">
       <property name="text">
-       <string>Gauss</string>
+       <string>Jacobi/Gauss-Seidel</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="inversabutton">
+      <property name="text">
+       <string>Inversa</string>
       </property>
      </widget>
     </item>

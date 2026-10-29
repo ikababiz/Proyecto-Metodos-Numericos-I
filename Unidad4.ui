@@ -48,16 +48,16 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="choleskibutton">
+     <widget class="QPushButton" name="DoolittleButton">
       <property name="text">
-       <string>Choleski</string>
+       <string>Doolittle</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="doolitlebutton">
+     <widget class="QPushButton" name="CroutButton">
       <property name="text">
-       <string>Doolittle</string>
+       <string>Crout</string>
       </property>
      </widget>
     </item>
