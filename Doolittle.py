@@ -14,15 +14,11 @@ from PySide6.QtCore import Qt, QFile
 from PySide6.QtGui import QPixmap # para imagenes
 from PySide6.QtUiTools import QUiLoader
 import sympy as sp
-import numpy as np
-from scipy.linalg import lu
-from sympy import symbols, Matrix, preview, linsolve
+from sympy import Matrix, preview
 from sympy.parsing.sympy_parser import (
     convert_xor, implicit_multiplication_application, parse_expr,
     standard_transformations,
 )
-
-EPSILON = 1e-6  # valor muy pequeño > 0
 
 CARPETA_UI = Path(__file__).parent # por si en un futuro se mueven directorios
 # para otros metodos en Qt Designer los objetnames se cambian solo aqui
@@ -34,7 +30,7 @@ BTN_CALCULAR = "calcButton"
 MOSTRAR = "pasosButton"
 BTN_VOLVER = "unidad4button"
 
-TAM_MIN, TAM_MAX = 2, 10   # tamanñios de matriz
+TAM_MIN, TAM_MAX = 2, 10   # tamaños de matriz
 
 TRANSFORMACIONES = standard_transformations + (
     implicit_multiplication_application, convert_xor,
@@ -85,37 +81,129 @@ def latex_a_pixmap(latex, dpi=200):
     pixmap.loadFromData(buffer.getvalue())
     return pixmap # devuelve la imagen
 
-def FactorizacionLU(M):
-    A = np.array(M[:, :-1].tolist(), dtype=float)
-    P, L, U = lu(A)
 
-    return L, U # No se que se hace con P
+def FactorizacionLU(M, dooli): # Con SciPy es posible pero trabana con NumPy
+    n = M.cols - 1  # cantidad de columnas del sistema - columna b
+    A = M[:, :-1]
+    L = sp.zeros(n, n)  # inicializa en 0
+    U = sp.zeros(n, n)  # inicializa en 0
 
-def generar_pasos_detallados(M_orig, metodo):
-    M = M_orig.copy() # copia para no perderla
-    filas, cols = M.shape
+    for k in range(n):
+        suma1 = sum(L[k, s] * U[s, k] for s in range(k))
+        if dooli:
+            L[k, k] = 1  # Metodo Doolittle
+            U[k, k] = sp.simplify((A[k, k] - suma1) / L[k, k])  # Entre L
+            if U[k, k] == 0: # Deberia de intentar intercambiar, usando PA = LU
+                raise ValueError("Error: pivote cero. No se puede continuar sin intercambiar filas o reordenar las ecuaciones")
+        else:
+            U[k, k] = 1  # Metodo Crout
+            L[k, k] = sp.simplify((A[k, k] - suma1) / U[k, k])  # Entre U
+            if L[k, k] == 0: # Deberia de intentar intercambiar, usando PA = LU
+                raise ValueError("Error: pivote cero. No se puede continuar sin intercambiar filas o reordenar las ecuaciones")
+        for j in range(k + 1, n): # El resto del proceso sigue igual
+            suma2 = sum(L[k, s] * U[s, j] for s in range(k))
+            U[k, j] = sp.simplify((A[k, j] - suma2) / L[k, k])
+        for i in range(k + 1, n):
+            suma3 = sum(L[i, s] * U[s, k] for s in range(k))
+            L[i, k] = sp.simplify((A[i, k] - suma3) / U[k, k])
+
+    return L, U # Regresa matrices de SymPy
+
+
+def progresiva(M, Vector): # Para Lv = b
+    n = M.cols
+    sol = sp.zeros(n, 1) # Comienza declarando una matriz (vector)nx1 de SymPy con  ceros
+    for i in range(n): # recorre desde 0 hasta n-1
+        suma = sum(M[i, j] * sol[j, 0] for j in range(i)) # calcula el producto de los coeficientes de la fila i por las variables que ya fueron resueltas
+        sol[i, 0] = (Vector[i, 0] - suma) / M[i, i] # resta terminos conocidos del lado derecho del vector y divide para terminar el despeje
+    return sol
+
+
+def regresiva(M, Vector): # Para Ux = v
+    n = M.cols
+    sol = sp.zeros(n, 1) # Comienza declarando una matriz (vector)nx1 de SymPy con  ceros
+    for i in range(n-1, -1, -1): # desde n-1 hasta 0
+        suma = sum(M[i, j] * sol[j, 0] for j in range(i + 1, n)) # suma el producto de los coeficientes ubicados a la derecha de la diagonal por los valores de x que ya se calcularon
+        sol[i, 0] = (Vector[i, 0] - suma) / M[i, i]
+    return sol
+
+
+def generar_pasos_detallados(A, dooli): # Falta detallar pasos
+    n = A.rows
+    b = A [:, -1] # solo la ultima columna
+    L, U = FactorizacionLU(A, dooli)
     pasos_lista = [] # para append
 
     # Matriz inicial
+    latex_A = matriz_a_latex(A, aumentada=True)
     pasos_lista.append({
-        "matriz": M.copy(),
-        "operacion": r"\text{Matriz aumentada inicial del sistema}"
+        "descripcion": "Matriz aumentada inicial del sistema",
+        "latex_bloques": [latex_A]
     }) # paso 0
 
     # luego L y U
+    latex_L = matriz_a_latex(L, aumentada=False)
+    latex_U = matriz_a_latex(U, aumentada=False)
+    bloque_LU = rf"L = {latex_L} \quad U = {latex_U}"
+    if dooli:
+        pasos_lista.append({
+            "descripcion": r"Se calculan las matrices 𝕃 (con diagonal de unos) y 𝕌",  # QLabel renderiza bien texto con unicode
+            "latex_bloques": [bloque_LU]
+        })
+    else:
+        pasos_lista.append({
+            "descripcion": r"Se calculan las matrices 𝕃 y 𝕌 (con diagonal de unos)",
+            # QLabel renderiza bien texto con unicode
+            "latex_bloques": [bloque_LU]
+        })
 
+    # Ecuacion 2 Lv = b
+    # se crea v, con variables de Sympy
+    v_sym = sp.Matrix([sp.Symbol(f"v_{i+1}") for i in range(n)])
+    latex_v = matriz_a_latex(v_sym, False) # usar sp.latex(v_sym) usa corchetes
+    latex_b = matriz_a_latex(b, False)
+    ecuacion_2 = rf"{latex_L} {latex_v} = {latex_b}" # ecuacion
+    pasos_lista.append({
+        "descripcion": r"De la ecuación 2, se resuelve el sistema 𝕃 <b>v&#773;</b> = <b>b&#773;</b>",
+        "latex_bloques": [ecuacion_2]
+    })
+
+    # progresiva primeto
+    v_val = progresiva(L, b)
+    latex_v_val = matriz_a_latex(v_val, aumentada=False)
+    pasos_lista.append({
+        "descripcion": r"Sustitución progresiva para hallar <b>v&#773;</b>",
+        "latex_bloques": [r"\overline{v} = " + latex_v_val]
+    })
+    # Ecuacion 1 Ux = v
+    # regresiva despues
+    x_sym = sp.Matrix([sp.Symbol(f"x_{i+1}") for i in range(n)])
+    latex_x = matriz_a_latex(x_sym, False) # usar sp.latex(x_sym) usa corchetes
+    ecuacion_1 = rf"{latex_U} {latex_x} = {latex_v_val}"
+    pasos_lista.append({
+        "descripcion": r"Del sistema 𝕌 <b>x&#773;</b> = <b>v&#773;</b> se emplea sustitución regresiva para hallar <b>x&#773;</b>",
+        "latex_bloques": [ecuacion_1]
+    })
+
+    # Solución del sistema
+    x_val = regresiva(U, v_val)
+    latex_x_val = matriz_a_latex(x_val, False) # usar sp.latex(x_sym) usa corchetes
+    pasos_lista.append({
+        "descripcion": r"Con esto se encuentra el vector solución <b>x&#773;</b>",
+        "latex_bloques": [r"\overline{x} = " + latex_x_val]
+    })
 
     return pasos_lista # regresa el conjunto de pasos como texto en formato LaTeX
 
 
 class VerMatriz(QDialog):
-    def __init__(self, datos, parent=None, aumentada=False):
-        super().__init__(parent) # no es hija
+    def __init__(self, datos, aumentada):
+        super().__init__()
         self.setWindowTitle("Confirmar matriz")
         # Forzar fondo blanco y texto negro en la ventana emergente
         self.setStyleSheet("background-color: white; color: black;")
 
-        latex = matriz_a_latex(datos, True)  # ValueError si hay celdas inválidas
+        latex = matriz_a_latex(datos, aumentada)  # ValueError si hay celdas inválidas
         pixmap = latex_a_pixmap(latex)  # RuntimeError si falta LaTeX
 
         imagen = QLabel() # se mete la imagen en un QLabel
@@ -186,7 +274,7 @@ class IngresarnaMatriz(QWidget): # falta implementar que si ya hay matriz del mi
                     return
 
         try: # trata de visualizarla
-            vista = VerMatriz(datos, parent=self, aumentada = True)
+            vista = VerMatriz(datos, True)
         except (ValueError, RuntimeError) as e:
             QMessageBox.warning(self, "Error", str(e))
             return
@@ -209,10 +297,10 @@ class IngresarnaMatriz(QWidget): # falta implementar que si ya hay matriz del mi
 
 
 class VentanaPasosDetallados(QDialog):
-    def __init__(self, pasos_lista, parent=None):
+    def __init__(self, pasos_lista, titulo,  parent=None):
         super().__init__(parent)
-        self.setWindowTitle("Pasos del método")
-        self.resize(800, 750) # tambien falta tamano dinamico
+        self.setWindowTitle(titulo)
+        self.resize(800, 750)
 
         # Forzar fondo blanco y texto negro en la ventana emergente
         self.setStyleSheet("background-color: white; color: black;")
@@ -225,6 +313,32 @@ class VentanaPasosDetallados(QDialog):
         container.setStyleSheet("background-color: white;")
         layout_container = QVBoxLayout(container)
         layout_container.setSpacing(15) # margen
+
+        for idx, paso in enumerate(pasos_lista):
+            paso_box = QVBoxLayout()
+
+            lbl_titulo = QLabel(f"<b>Paso {idx}:</b> {paso.get('descripcion', '')}") # obtiene la descripcion si la hay
+            lbl_titulo.setAlignment(Qt.AlignCenter)
+            lbl_titulo.setStyleSheet("color: black; background-color: white;")
+            paso_box.addWidget(lbl_titulo)
+
+            for latex_str in paso.get('latex_bloques', []):
+                try:
+                    pix_latex = latex_a_pixmap(latex_str, dpi=130)
+                    lbl_img = QLabel()
+                    lbl_img.setPixmap(pix_latex)
+                    lbl_img.setAlignment(Qt.AlignCenter)
+                    paso_box.addWidget(lbl_img)
+                except Exception as e:
+                    lbl_err = QLabel(f"Error al renderizar LaTeX: {e}\n{latex_str}")
+                    lbl_err.setStyleSheet("color: red; background-color: white;")
+                    lbl_err.setAlignment(Qt.AlignCenter)
+                    paso_box.addWidget(lbl_err)
+
+                # separador
+                line = QLabel("<hr>")
+                paso_box.addWidget(line)
+                layout_container.addLayout(paso_box)
 
         scroll.setWidget(container)
 
@@ -255,7 +369,7 @@ class MetodoDoolittle(QWidget):
         self.sistema = None # para la matriz confirmada
 
         # AQUI VAN LOS BOTONES
-        self.widget(R_DOOLITTLE).setChecked(True)  # Empieza predeterminado con Gauss
+        self.widget(R_DOOLITTLE).setChecked(True)
         self.widget(MATRIZ).clicked.connect(self.ingresar_matriz)
         self.widget(MOSTRAR).clicked.connect(self.mostrar_pasos)
 
@@ -304,14 +418,15 @@ class MetodoDoolittle(QWidget):
             return
 
         try:
-            Lnum, Unum = FactorizacionLU(self.sistema)
-            L = Matrix(Lnum)
-            U = Matrix(Unum)
-            L.simplify()
-            U.simplify()
-            Llatex = matriz_a_latex(L, False)
-            Ulatex = matriz_a_latex(U, False)
-            QMessageBox.information(self, "Matrices L y U", f"La matriz L es \n{Llatex}\n La matriz U es \n{Ulatex}",QMessageBox.Ok)
+            dooli = self.widget(R_DOOLITTLE).isChecked()
+            lista_pasos = generar_pasos_detallados(self.sistema, dooli)
+            if dooli:
+                titulo = "Método de Doolittle"
+            else:
+                titulo = "Método de Crout"
+            ventana_pasos = VentanaPasosDetallados(lista_pasos, titulo, parent=self)
+            self.windows.append(ventana_pasos)
+            ventana_pasos.show()
         except Exception as e:
             QMessageBox.warning(self, "Error al generar pasos", str(e))
 
