@@ -72,9 +72,7 @@ class Graficador(QMainWindow):
         f = sp.lambdify(x, expr, modules="numpy")
         with np.errstate(all="ignore"):
             ys = np.asarray(f(xs), dtype=complex)
-        ys = np.broadcast_to(ys, xs.shape).astype(complex)
-        # se descartan puntos fuera del dominio (complejos o infinitos)
-        ys = np.where(np.abs(ys.imag) < 1e-12, ys.real, np.nan)
+        ys = np.broadcast_to(ys, xs.shape).astype(complex) # se descartan puntos fuera del dominio (complejos o infinitos) ys = np.where(np.abs(ys.imag) < 1e-12, ys.real, np.nan)
         return np.where(np.isfinite(ys), ys, np.nan)
 
     def graficar(self):
