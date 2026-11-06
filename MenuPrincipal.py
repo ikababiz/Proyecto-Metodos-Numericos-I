@@ -10,6 +10,7 @@ from PySide6.QtUiTools import QUiLoader # para Qt Design
 from biseccion import MetodoBiseccion # se importa cada clase de cada metodo
 from Gauss import MetodoGauss
 from Doolittle import MetodoDoolittle
+from Choleski import MetodoCholeski
 
 CARPETA_UI = Path(__file__).parent # carpeta donde están los .ui (la misma que este archivo)
 # si se cambian las direcciones de archivos hay que cambiar la ruta
@@ -44,6 +45,9 @@ class MainWindow(QMainWindow):
         doo = MetodoDoolittle()
         self.agregar_pagina("Doolittle", doo)
 
+        chole = MetodoCholeski()
+        self.agregar_pagina("Choleski", chole)
+
         # navegación: (página donde está el botón, nombre del botón, página destino)
         # el nombre del botón es su objectName en Qt Designer
         self.conectar("Introduccion", "menubutton", "Unidades")
@@ -68,7 +72,9 @@ class MainWindow(QMainWindow):
         # Unidad 4
         self.conectar("Unidad4", "menubutton", "Unidades")
         self.conectar("Unidad4", "DoolittleButton", "Doolittle")
+        self.conectar("Unidad4", "CholeskiButton", "Choleski")
         doo.volver.connect(lambda: self.ir_a("Unidad4"))
+        chole.volver.connect(lambda: self.ir_a("Unidad4"))
 
         # Unidad 5
         self.conectar("Unidad5", "menubutton", "Unidades")
