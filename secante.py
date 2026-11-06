@@ -1,44 +1,39 @@
+#!/bin/python3
+
+import numpy as np
+import sympy as sp
 import math
 
-EPSILON = 1e-6  # valor muy pequeño > 0
+EPSILON = 0.0001
 
+def f(x):
+    return x**2 - x*math.exp(x) + 4
 
-def funcion(x): # la del ejemplo
-    return x**2 - x * math.exp(x) + 4
+def xi(xc, xu, fc, fu):
+    if abs(fu-fc) < EPSILON:
+        return xu, False
+    return xu - fu*(xu-xc)/(fu-fc), True
 
+def print_values(i, x, fx):
+    print("Iteración "+str(i)+" : x_"+str(i)+" =", f"{x:3.5f}", "f(x_"+str(i)+") =", f"{fx:3.5f}")
 
-def tabla(n, x_n, fx_n):
-    print()
-    print("_" * 23)
-    print(f"|{n+1:<3d}|{x_n:<8.4f}|{fx_n:<8.4f}|", end="")
+xc = 0
+xu = 5
+fc = f(xc)
+fu = f(xu)
+xaux, _ = xi(xc, xu, fc, fu)
+faux = f(xaux)
+print_values(1, xc, fc)
+print_values(2, xu, fu)
 
-
-def main():
-    n = 0
-    print("Método de la Secante")
-    print("Con la ecuación x^2 - xe^x + 4 = 0")
-    print("_" * 23)
-    print(f"|{'n':<3}|{'x_n':<8}|{'f(x_n)':<8}|", end="")
-
-    x_n, x_n1 = 0.0, 3.0  # se eligen los primeros 2 o se piden
-    fx_n = funcion(x_n)
-    fx_n1 = funcion(x_n1)
-    tabla(n, x_n, fx_n)
-    tabla(n, x_n1, fx_n1)
-
-    while abs(fx_n - fx_n1) > EPSILON:
-        tempx = x_n  # para no perder el valor
-        tempfx = funcion(tempx)
-        x_n = x_n1  # se reasigna al cambiar de fila
-        fx_n = funcion(x_n)
-        x_n1 = x_n - fx_n * (x_n - tempx) / (fx_n - tempfx)
-        fx_n1 = funcion(x_n1)
-        tabla(n, x_n1, fx_n1)
-        if abs(fx_n - fx_n1) < EPSILON:
-            break
-        n += 1
-    print()
-
-
-if __name__ == "__main__":
-    main()
+i = 3
+still = True
+while still:
+    print_values(i, xaux, faux)
+    xc = xu
+    fc = fu
+    xu = xaux
+    fu = faux
+    xaux, still = xi(xc, xu, fc, fu)
+    faux = f(xaux)
+    i += 1
