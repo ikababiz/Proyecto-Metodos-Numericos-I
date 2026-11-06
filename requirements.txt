@@ -14,3 +14,4 @@ scipy-stubs==1.18.1.1
 shiboken6==6.12.0
 sympy==1.14.0
 typing_extensions==4.16.0
+matplotlib==3.11.2

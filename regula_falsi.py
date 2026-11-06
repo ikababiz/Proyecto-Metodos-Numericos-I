@@ -72,7 +72,7 @@ def cargar_ui(nombre): # metodo de carga generico
     return widget
 
 
-class MetodoBiseccion(QWidget):
+class MetodoFalsaPosicion(QWidget):
     volver = Signal()
 
     def __init__(self):
@@ -223,6 +223,6 @@ class MetodoBiseccion(QWidget):
 if __name__ == "__main__":
 
     app = QApplication(sys.argv)
-    w = MetodoBiseccion()
+    w = MetodoFalsaPosicion()
     w.show()
     sys.exit(app.exec())
