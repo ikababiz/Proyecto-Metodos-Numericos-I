@@ -23,7 +23,7 @@ CARPETA_UI = Path(__file__).parent # por si en un futuro se mueven directorios
 ENCABEZADOS = ["n", "x_n", "f(x_n)", "f'(x_n)"] # cada metodo llevara su encabezado
 
 # para otros metodos en Qt Designer los objetnames se cambian solo aqui
-LINE_A = "lineEditA"
+LINE_X = "lineEditX"
 BTN_CALCULAR = "calcularbutton"
 BTN_TABLA = "tablabutton"
 BTN_GRAFICA = "graficabutton"
@@ -38,16 +38,15 @@ def f(x):
 
 
 def df(n):
-    return deriv.evalf(subs={x:n})
+    return float(deriv.evalf(subs={x:n}))
 
 
 def calcular_newton(x_i, epsilon=EPSILON, max_iter=200):
     x_i = float(x_i)
-
+    x_aux = 0
     i = 1
     filas = []
     while i < max_iter:
-        i += 1
         fx_i = f(x_i)
         dfx_i = df(x_i)
         filas.append((i, x_i, fx_i, dfx_i))
@@ -55,6 +54,7 @@ def calcular_newton(x_i, epsilon=EPSILON, max_iter=200):
             break
         x_aux = x_i
         x_i = x_aux - fx_i/dfx_i
+        i += 1
     return filas
 
 
@@ -101,7 +101,7 @@ class MetodoNewton(QWidget):
 
     def leer_filas(self): # evalua usando calcular_biseccion y regresa filas
         try:
-            x_i = float(self.widget(LINE_A).text())
+            x_i = float(self.widget(LINE_X).text())
             return calcular_newton(x_i)
         except ValueError as e:
             QMessageBox.warning(self, "Datos inválidos", str(e))
@@ -125,7 +125,7 @@ class MetodoNewton(QWidget):
         # self.windows.append(w3)  # se guarda para que Qt no la cierre
         # w3.show()
         try:
-            x_i = float(self.widget(LINE_A).text())
+            x_i = float(self.widget(LINE_X).text())
             x_aux = x_i
             fx_i = f(x_i)
             dfx_i = df(fx_i)

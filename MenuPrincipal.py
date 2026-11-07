@@ -12,6 +12,7 @@ from regula_falsi import MetodoFalsaPosicion
 from Gauss import MetodoGauss
 from Doolittle import MetodoDoolittle
 from Choleski import MetodoCholeski
+from Newton import MetodoNewton
 
 CARPETA_UI = Path(__file__).parent # carpeta donde están los .ui (la misma que este archivo)
 # si se cambian las direcciones de archivos hay que cambiar la ruta
@@ -43,6 +44,9 @@ class MainWindow(QMainWindow):
         falpos = MetodoFalsaPosicion()
         self.agregar_pagina("RegulaFalsi", falpos)
 
+        newt = MetodoNewton()
+        self.agregar_pagina("Newton", newt)
+
         gauss = MetodoGauss()
         self.agregar_pagina("Gauss", gauss)
 
@@ -65,22 +69,21 @@ class MainWindow(QMainWindow):
         self.conectar("Unidad2", "menubutton", "Unidades")
         bis.volver.connect(lambda: self.ir_a("Unidad2")) # cuando se manda la señal
         self.conectar("Unidad2", "biseccionbutton", "Biseccion")
-        self.conectar("Biseccion", "unidad2button", "Unidad2")
         falpos.volver.connect(lambda: self.ir_a("Unidad2")) # cuando se manda la señal
-        self.conectar("RegulaFalsi", "unidad2button", "Unidad2")
         self.conectar("Unidad2", "regulafalsibutton", "RegulaFalsi")
+        newt.volver.connect(lambda: self.ir_a("Unidad2"))
+        self.conectar("Unidad2", "newtonbutton", "Newton")
 
         # Unidad 3
         self.conectar("Unidad3", "menubutton", "Unidades")
         gauss.volver.connect(lambda: self.ir_a("Unidad3"))
         self.conectar("Unidad3", "gaussbutton", "Gauss")
-        self.conectar("Gauss", "unidad3button", "Unidad3")
 
         # Unidad 4
         self.conectar("Unidad4", "menubutton", "Unidades")
         self.conectar("Unidad4", "DoolittleButton", "Doolittle")
-        self.conectar("Unidad4", "CholeskiButton", "Choleski")
         doo.volver.connect(lambda: self.ir_a("Unidad4"))
+        self.conectar("Unidad4", "CholeskiButton", "Choleski")
         chole.volver.connect(lambda: self.ir_a("Unidad4"))
 
         # Unidad 5
