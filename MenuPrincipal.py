@@ -8,7 +8,7 @@ from PySide6.QtCore import Qt, QFile
 from PySide6.QtUiTools import QUiLoader # para Qt Design
 
 from biseccion import MetodoBiseccion # se importa cada clase de cada metodo
-from regula_falsi import MetodoFalsaPosicion # se importa cada clase de cada metodo
+from regula_falsi import MetodoFalsaPosicion
 from Gauss import MetodoGauss
 from Doolittle import MetodoDoolittle
 from Choleski import MetodoCholeski
@@ -41,7 +41,7 @@ class MainWindow(QMainWindow):
         self.agregar_pagina("Biseccion", bis)
 
         falpos = MetodoFalsaPosicion()
-        self.agregar_pagina("Regula Falsi", falpos)
+        self.agregar_pagina("RegulaFalsi", falpos)
 
         gauss = MetodoGauss()
         self.agregar_pagina("Gauss", gauss)
@@ -67,8 +67,8 @@ class MainWindow(QMainWindow):
         self.conectar("Unidad2", "biseccionbutton", "Biseccion")
         self.conectar("Biseccion", "unidad2button", "Unidad2")
         falpos.volver.connect(lambda: self.ir_a("Unidad2")) # cuando se manda la señal
-        self.conectar("Regula Falsi", "unidad2button", "Unidad2")
-
+        self.conectar("RegulaFalsi", "unidad2button", "Unidad2")
+        self.conectar("Unidad2", "regulafalsibutton", "RegulaFalsi")
 
         # Unidad 3
         self.conectar("Unidad3", "menubutton", "Unidades")
