@@ -9,11 +9,13 @@ from PySide6.QtUiTools import QUiLoader # para Qt Design
 
 from biseccion    import MetodoBiseccion # se importa cada clase de cada metodo
 from regula_falsi import MetodoFalsaPosicion
-from Gauss        import MetodoGauss
-from Doolittle    import MetodoDoolittle
-from Choleski     import MetodoCholeski
 from Newton       import MetodoNewton
 from Secante      import MetodoSecante
+from Gauss        import MetodoGauss
+from Inversa      import MetodoInversa
+from Doolittle    import MetodoDoolittle
+from Choleski     import MetodoCholeski
+
 
 CARPETA_UI = Path(__file__).parent # carpeta donde están los .ui (la misma que este archivo)
 # si se cambian las direcciones de archivos hay que cambiar la ruta
@@ -39,26 +41,30 @@ class MainWindow(QMainWindow):
             self.agregar_pagina(nombre, cargar_ui(nombre)) # cada diseño se carga y se agrega a la pila
 
         # cada metodo tiene su propia clase
+        # Unidad 2
         bis = MetodoBiseccion()
         self.agregar_pagina("Biseccion", bis)
-
         falpos = MetodoFalsaPosicion()
         self.agregar_pagina("RegulaFalsi", falpos)
-
         newt = MetodoNewton()
         self.agregar_pagina("Newton", newt)
-
         sec = MetodoSecante()
         self.agregar_pagina("Secante", sec)
 
+        # Unidad 3
         gauss = MetodoGauss()
         self.agregar_pagina("Gauss", gauss)
+        inv = MetodoInversa()
+        self.agregar_pagina("Inversa", inv)
 
+        # Unidad 4
         doo = MetodoDoolittle()
         self.agregar_pagina("Doolittle", doo)
-
         chole = MetodoCholeski()
         self.agregar_pagina("Choleski", chole)
+
+        # Unidad 5
+        # W.I.P.
 
         # navegación: (página donde está el botón, nombre del botón, página destino)
         # el nombre del botón es su objectName en Qt Designer
@@ -71,6 +77,7 @@ class MainWindow(QMainWindow):
 
         # Unidad 2
         self.conectar("Unidad2", "menubutton", "Unidades")
+
         bis.volver.connect(lambda: self.ir_a("Unidad2")) # cuando se manda la señal
         self.conectar("Unidad2", "biseccionbutton", "Biseccion")
         falpos.volver.connect(lambda: self.ir_a("Unidad2")) # cuando se manda la señal
@@ -82,11 +89,15 @@ class MainWindow(QMainWindow):
 
         # Unidad 3
         self.conectar("Unidad3", "menubutton", "Unidades")
+
         gauss.volver.connect(lambda: self.ir_a("Unidad3"))
         self.conectar("Unidad3", "gaussbutton", "Gauss")
+        inv.volver.connect(lambda: self.ir_a("Unidad3"))
+        self.conectar("Unidad3", "inversabutton", "Inversa")
 
         # Unidad 4
         self.conectar("Unidad4", "menubutton", "Unidades")
+
         self.conectar("Unidad4", "DoolittleButton", "Doolittle")
         doo.volver.connect(lambda: self.ir_a("Unidad4"))
         self.conectar("Unidad4", "CholeskiButton", "Choleski")
@@ -94,6 +105,7 @@ class MainWindow(QMainWindow):
 
         # Unidad 5
         self.conectar("Unidad5", "menubutton", "Unidades")
+        # W.I.P.
 
         self.ir_a("Introduccion") # Empieza de predeterminado en la intro
         self.salir = self.paginas["Introduccion"].findChild(QWidget, "salirButton")

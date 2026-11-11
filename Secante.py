@@ -9,10 +9,8 @@ from PySide6.QtCore import Qt, QFile
 from PySide6.QtUiTools import QUiLoader
 
 import math
-from PySide6.QtWidgets import QMainWindow
 
 from Tabla_resultados import VentanaTabla
-import numpy as np
 
 EPSILON = 1e-6  # valor muy pequeño > 0
 
@@ -20,8 +18,8 @@ CARPETA_UI = Path(__file__).parent # por si en un futuro se mueven directorios
 ENCABEZADOS = ["n", "x_n", "f(x_n)"] # cada metodo llevara su encabezado
 
 # para otros metodos en Qt Designer los objetnames se cambian solo aqui
-LINE_XC = "lineEditXC"
-LINE_XU = "lineEditXU"
+LINE_XC = "lineEditXc"
+LINE_XU = "lineEditXu"
 BTN_CALCULAR = "calcularbutton"
 BTN_TABLA = "tablabutton"
 BTN_VOLVER = "unidad2button"
@@ -36,7 +34,7 @@ def xi(xc, xu, fc, fu):
     return xu - fu*(xu-xc)/(faux), True
 
 def calcular_secante(x_c, x_u, max_iter=200):
-    x_c = float(x_c)
+    xc = float(x_c)
     xu = float(x_u)
     if x_c == x_u:
         exit(1)
@@ -53,7 +51,7 @@ def calcular_secante(x_c, x_u, max_iter=200):
     i = 3
     still = True
     while still and i < max_iter:
-        filas.append((i, x_aux, faux))
+        filas.append((i, xaux, faux))
         xc = xu
         fc = fu
         xu = xaux
@@ -107,7 +105,7 @@ class MetodoSecante(QWidget):
         try:
             x_c = float(self.widget(LINE_XC).text())
             x_u = float(self.widget(LINE_XU).text())
-            return calcular_secante(x_i, x_u)
+            return calcular_secante(x_c, x_u)
         except ValueError as e:
             QMessageBox.warning(self, "Datos inválidos", str(e))
             return None
@@ -137,6 +135,6 @@ class MetodoSecante(QWidget):
 if __name__ == "__main__":
 
     app = QApplication(sys.argv)
-    w = MetodoNewton()
+    w = MetodoSecante()
     w.show()
     sys.exit(app.exec())
