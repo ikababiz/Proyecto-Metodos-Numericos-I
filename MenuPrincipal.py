@@ -7,12 +7,13 @@ from PySide6.QtCore import Qt, QFile
 
 from PySide6.QtUiTools import QUiLoader # para Qt Design
 
-from biseccion import MetodoBiseccion # se importa cada clase de cada metodo
+from biseccion    import MetodoBiseccion # se importa cada clase de cada metodo
 from regula_falsi import MetodoFalsaPosicion
-from Gauss import MetodoGauss
-from Doolittle import MetodoDoolittle
-from Choleski import MetodoCholeski
-from Newton import MetodoNewton
+from Gauss        import MetodoGauss
+from Doolittle    import MetodoDoolittle
+from Choleski     import MetodoCholeski
+from Newton       import MetodoNewton
+from Secante      import MetodoSecante
 
 CARPETA_UI = Path(__file__).parent # carpeta donde están los .ui (la misma que este archivo)
 # si se cambian las direcciones de archivos hay que cambiar la ruta
@@ -47,6 +48,9 @@ class MainWindow(QMainWindow):
         newt = MetodoNewton()
         self.agregar_pagina("Newton", newt)
 
+        sec = MetodoSecante()
+        self.agregar_pagina("Secante", sec)
+
         gauss = MetodoGauss()
         self.agregar_pagina("Gauss", gauss)
 
@@ -73,6 +77,8 @@ class MainWindow(QMainWindow):
         self.conectar("Unidad2", "regulafalsibutton", "RegulaFalsi")
         newt.volver.connect(lambda: self.ir_a("Unidad2"))
         self.conectar("Unidad2", "newtonbutton", "Newton")
+        sec.volver.connect(lambda: self.ir_a("Unidad2"))
+        self.conectar("Unidad2", "secantebutton", "Secante")
 
         # Unidad 3
         self.conectar("Unidad3", "menubutton", "Unidades")
