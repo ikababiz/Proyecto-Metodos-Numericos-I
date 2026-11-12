@@ -13,6 +13,7 @@ from Newton       import MetodoNewton
 from Secante      import MetodoSecante
 from Gauss        import MetodoGauss
 from Inversa      import MetodoInversa
+from Jacobi       import MetodoJacobi
 from Doolittle    import MetodoDoolittle
 from Choleski     import MetodoCholeski
 
@@ -56,6 +57,8 @@ class MainWindow(QMainWindow):
         self.agregar_pagina("Gauss", gauss)
         inv = MetodoInversa()
         self.agregar_pagina("Inversa", inv)
+        jaco = MetodoJacobi()
+        self.agregar_pagina("Jacobi", jaco)
 
         # Unidad 4
         doo = MetodoDoolittle()
@@ -94,6 +97,8 @@ class MainWindow(QMainWindow):
         self.conectar("Unidad3", "gaussbutton", "Gauss")
         inv.volver.connect(lambda: self.ir_a("Unidad3"))
         self.conectar("Unidad3", "inversabutton", "Inversa")
+        jaco.volver.connect(lambda: self.ir_a("Unidad3"))
+        self.conectar("Unidad3", "jacobibutton", "Jacobi")
 
         # Unidad 4
         self.conectar("Unidad4", "menubutton", "Unidades")
