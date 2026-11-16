@@ -8,11 +8,11 @@ from PySide6.QtWidgets import (
 from PySide6.QtCore import Qt, QFile
 from PySide6.QtUiTools import QUiLoader
 
-import math
+import numpy as np
 
 from Tabla_resultados import VentanaTabla
 
-EPSILON = 1e-6  # valor muy pequeño > 0
+EPSILON = 1e-5  # valor muy pequeño > 0
 
 CARPETA_UI = Path(__file__).parent # por si en un futuro se mueven directorios
 ENCABEZADOS = ["n", "x_n", "f(x_n)"] # cada metodo llevara su encabezado
@@ -20,12 +20,11 @@ ENCABEZADOS = ["n", "x_n", "f(x_n)"] # cada metodo llevara su encabezado
 # para otros metodos en Qt Designer los objetnames se cambian solo aqui
 LINE_XC = "lineEditXc"
 LINE_XU = "lineEditXu"
+COMBO_FUNCION = "comboFuncion"
 BTN_CALCULAR = "calcularbutton"
 BTN_TABLA = "tablabutton"
 BTN_VOLVER = "unidad2button"
 
-def f(x):
-    return x**2 - x*math.exp(x) + 4
 
 def xi(xc, xu, fc, fu):
     faux = fu - fc
@@ -33,11 +32,11 @@ def xi(xc, xu, fc, fu):
         return xu, False
     return xu - fu*(xu-xc)/(faux), True
 
-def calcular_secante(x_c, x_u, max_iter=200):
+def calcular_secante(f, x_c, x_u, max_iter=200):
     xc = float(x_c)
     xu = float(x_u)
     if x_c == x_u:
-        exit(1)
+        raise ValueError("Error: Los valores iniciales x_c y x_u no pueden ser iguales.")
     filas = []
     fc = f(xc)
     fu = f(xu)
@@ -86,6 +85,16 @@ class MetodoSecante(QWidget):
 
         self.windows = []  # ventanas abiertas (tabla, gráfica) para que Qt no las cierre
 
+        self.funciones_disponibles = \
+        {
+                0: (lambda x: x ** 2 - x * np.exp(x) + 4,  # lamda pueden generar overflow en consola
+                    r'$x^2 - x e^x + 4$'),
+                1: (lambda x: -10 * np.exp(-x / 2) * np.cos(2 * x),
+                    r'$-10e^{-x/2} \cos(2x)$'),
+                2: (lambda x: x ** 2 - np.exp(x) - 3 * x + 2,
+                    r'$x^2 - e^x - 3x + 2$')
+        }  # funciones de clases, tareas y examen
+
         self.widget(BTN_CALCULAR).clicked.connect(self.calcular)
         self.widget(BTN_TABLA).clicked.connect(self.abrir_tabla)
 
@@ -101,11 +110,17 @@ class MetodoSecante(QWidget):
                 f"Lista de widgets: {existentes}")
         return widg
 
+    def obtener_funcion_actual(self):
+        # ;ee el índice seleccionado en el ComboBox y devuelve (funcion, etiqueta)
+        idx = self.widget(COMBO_FUNCION).currentIndex()
+        return self.funciones_disponibles.get(idx, self.funciones_disponibles[0])
+
     def leer_filas(self): # evalua usando calcular_biseccion y regresa filas
         try:
             x_c = float(self.widget(LINE_XC).text())
             x_u = float(self.widget(LINE_XU).text())
-            return calcular_secante(x_c, x_u)
+            func, _ = self.obtener_funcion_actual()
+            return calcular_secante(func, x_c, x_u)
         except ValueError as e:
             QMessageBox.warning(self, "Datos inválidos", str(e))
             return None
@@ -116,11 +131,19 @@ class MetodoSecante(QWidget):
             return
 
         n, x_final, fx_final = filas[-1] # la ultima fila
-        QMessageBox.information(
-            self, "Resultado",
-            f"La raíz aproximada es {x_final:.4f}\n"
-            f"Número de iteraciones: {n}\n"
-        ) # el resultado
+        if n >= 199:
+            QMessageBox.warning(
+                self, "Aviso de convergencia",
+                f"El método se detuvo tras {n} iteraciones sin converger bajo la tolerancia esperada.\n"
+                f"Último valor calculado: {x_final:.4f}\n"
+                "Revisa la tabla o la gráfica para analizar el comportamiento."
+            )
+        else:  # converge
+            QMessageBox.information(
+                self, "Resultado",
+                f"La raíz aproximada es {x_final:.4f}\n"
+                f"Número de iteraciones: {n}\n"
+            )  # el resultado
 
 
     def abrir_tabla(self):

@@ -12,11 +12,13 @@ import math
 from PySide6.QtWidgets import QMainWindow
 
 from Tabla_resultados import VentanaTabla
+import matplotlib
+matplotlib.use('qtagg')
 import matplotlib.pyplot as plt
-import matplotlib.lines as mlines
+import matplotlib.lines as mlines # para el empaquetado del .exe
 import numpy as np
 
-EPSILON = 1e-6  # valor muy pequeño > 0
+EPSILON = 1e-5  # valor muy pequeño > 0, sale igual que las tablas en hoja de calculo
 
 CARPETA_UI = Path(__file__).parent # por si en un futuro se mueven directorios
 ENCABEZADOS = ["n", "a", "b", "c", "f(a)", "f(b)", "f(c)"] # cada metodo llevara su encabezado
@@ -24,22 +26,24 @@ ENCABEZADOS = ["n", "a", "b", "c", "f(a)", "f(b)", "f(c)"] # cada metodo llevara
 # para otros metodos en Qt Designer los objetnames se cambian solo aqui
 LINE_A = "lineEditA"
 LINE_B = "lineEditB"
+COMBO_FUNCION = "comboFuncion"
 BTN_CALCULAR = "calcularbutton"
 BTN_TABLA = "tablabutton"
 BTN_GRAFICA = "graficabutton"
 BTN_VOLVER = "unidad2button"
 
 
-# por ahora es estatica
-def f(x): # la del ejemplo
-    return x**2 - x * math.exp(x) + 4
-
-def calcular_biseccion(a, b, epsilon=EPSILON, max_iter=200):
+def calcular_biseccion(f, a, b, epsilon=EPSILON, max_iter=200): # ahora recibe funcion
         a, b = float(a), float(b)
         if a >= b:
-            raise ValueError("Error, el valor de a debe ser menor que b")
-        if f(a) * f(b) >= 0:
-            raise ValueError(f"Error, f({a}) y f({b}) deben tener signos distintos")
+            raise ValueError("Error, el valor de a debe ser menor que b.")
+        try:
+            fa = f(a)
+            fb = f(b)
+        except OverflowError:
+            raise ValueError("Error, el intervalo es excesivamente grande y causa overflow.")
+        if (fa > 0) == (fb > 0):
+            raise ValueError(f"Error, f({a}) y f({b}) deben tener signos distintos.")
 
         filas = []
         n = 1
@@ -82,6 +86,16 @@ class MetodoBiseccion(QWidget):
 
         self.windows = []  # ventanas abiertas (tabla, gráfica) para que Qt no las cierre
 
+        self.funciones_disponibles = \
+        {
+            0: (lambda x: x ** 2 - x * np.exp(x) + 4, # lamda pueden generar overflow en consola
+                r'$x^2 - x e^x + 4$'),
+            1: (lambda x: -10 * np.exp(-x / 2) * np.cos(2 * x),
+                r'$-10e^{-x/2} \cos(2x)$'),
+            2: (lambda x: x ** 2 - np.exp(x) - 3 * x + 2,
+                r'$x^2 - e^x - 3x + 2$')
+        } # funciones de clases, tareas y examen
+
         self.widget(BTN_CALCULAR).clicked.connect(self.calcular)
         self.widget(BTN_GRAFICA).clicked.connect(self.abrir_grafica)
         self.widget(BTN_TABLA).clicked.connect(self.abrir_tabla)
@@ -98,13 +112,19 @@ class MetodoBiseccion(QWidget):
                 f"Lista de widgets: {existentes}")
         return widg
 
+    def obtener_funcion_actual(self):
+        # ;ee el índice seleccionado en el ComboBox y devuelve (funcion, etiqueta)
+        idx = self.widget(COMBO_FUNCION).currentIndex()
+        return self.funciones_disponibles.get(idx, self.funciones_disponibles[0])
+
     def leer_filas(self): # evalua usando calcular_biseccion y regresa filas
         try:
             a = float(self.widget(LINE_A).text())
             b = float(self.widget(LINE_B).text())
-            return calcular_biseccion(a, b)
+            func, _ = self.obtener_funcion_actual()
+            return calcular_biseccion(func, a, b)
         except ValueError as e:
-            QMessageBox.warning(self, "Datos inválidos", str(e))
+            QMessageBox.warning(self, "Datos inválidos.", str(e))
             return None
 
     def calcular(self):
@@ -113,66 +133,45 @@ class MetodoBiseccion(QWidget):
             return
 
         n, a_final, b_final, c, fa, fb, fc = filas[-1] # la ultima fila
-        QMessageBox.information(
-            self, "Resultado",
-            f"La raíz aproximada es {c:.4f}\n"
-            f"Número de iteraciones: {n}\n"
-        ) # el resultado
+        if n >= 199:
+            QMessageBox.warning(
+                self, "Aviso de convergencia",
+                f"El método se detuvo tras {n} iteraciones sin converger bajo la tolerancia esperada.\n"
+                f"Último valor calculado: {c:.4f}\n"
+                "Revisa la tabla o la gráfica para analizar el comportamiento."
+            )
+        else:  # converge
+            QMessageBox.information(
+                self, "Resultado",
+                f"La raíz aproximada es {c:.4f}\n"
+                f"Número de iteraciones: {n}\n"
+            )  # el resultado
 
     # por ahora no hace nada mas que graficar una misma funcion
     def abrir_grafica(self):
-        # w3 = Graficador()  # del archivo graficador.py, la clase que hace la grafica
-        # self.windows.append(w3)  # se guarda para que Qt no la cierre
-        # w3.show()
+        filas = self.leer_filas() # reusa filas para calcular dependiendo de la funcion
+        if not filas:
+            return
+
         try:
             a = float(self.widget(LINE_A).text())
             b = float(self.widget(LINE_B).text())
-            temp_a = a
-            temp_b = b
-            c = (a + b) / 2  # La media aritmética en el rango dado.
-            c_values = np.array([c])  # Arreglo con los valores de c_n.
+            func, label_latex = self.obtener_funcion_actual() # para tener la funcion y el label
 
-            fa = f(a)
-            fb = f(b)
-            fc = f(c)
+            c_values = np.array([fila[3] for fila in filas])  # Arreglo con los valores de c_n.
+            c = c_values[-1] # usa los valores obtenidos en filas
+            fc = filas[-1][6] # usa los valores obtenidos en filas
 
-            x = np.linspace(a, b)  # Dominio de la gráfica.
-            y = x ** 2 - x * np.exp(x) + 4  # Expresión a dibujar en la gráfica.
-
-            epsilon = EPSILON  # Diferencia mínima.
-
-            i = 1
-            #print("Iteración", i, ": a =", f"{a:3.5f}", "b =", f"{b:3.5f}", "c =", f"{c:3.5f}", "f(a) =", f"{fa:3.5f}",
-                 # "f(b) =", f"{fb:3.5f}", "f(c) =", f"{fc:3.5f}")
-            if a >= b:
-                raise ValueError("Error, el valor de a debe ser menor que b")
-            if np.sign(fa) == np.sign(fb):  # Si f(a) y f(b) son del mismo signo, aborta el programa.
-                #print("La solución no es posible en el rango dado\n")
-                raise ValueError(f"Error, f({a}) y f({b}) deben tener signos distintos")
-            while abs(b - a) > epsilon:  # Iterar hasta que la diferencia de los valores del rango sea menor a epsilon.
-                i += 1  # Seguir la iteración.
-                if np.sign(fa) == np.sign(fc):  # Si f(a) y f(c) son del mismo signo,
-                    fa = fc  # reemplazamos f(a) con f(c) y también
-                    a = c  # reemplazamos a con c.
-                else:  # Si no, entonces f(b) y f(c) son del
-                    fb = fc  # mismo signo. Reemplazamos f(b) con f(c)
-                    b = c  # y también reemplazamos b con c.
-                c = (a + b) / 2  # Actualizamos el valor de c de acuerdo al nuevo rango.
-                fc = f(c)  # Evaluamos f(x) con x = c.
-                c_values = np.append(c_values, c)  # Añadimos el valor c_i al arreglo.
-                #print("Iteración", i, ": a =", f"{a:3.5f}", "b =", f"{b:3.5f}", "c =", f"{c:3.5f}", "f(a) =",
-                      #f"{fa:3.5f}",
-                      #"f(b) =", f"{fb:3.5f}", "f(c) =", f"{fc:3.5f}")
-
-            #print("Solución aproximada: x = ", c)
+            x = np.linspace(a, b, 200) # Dominio de la gráfica.
+            y = func(x)
 
             fig, axs = plt.subplots()
             axs.set_xlabel('x')
             axs.set_ylabel('y')
             fig.suptitle('Bisección')
 
-            axs.plot(x, y, label=r'$x^2 - xe^x + 4$', color='blue')
-            axs.plot(c, fc, 'o', label='Sol. aproximada: $x = $' + np.format_float_positional(c, precision=5),
+            axs.plot(x, y, label=label_latex, color='blue') # label dinamico
+            axs.plot(c, fc, 'o', label='Sol. aproximada: $x = $' + np.format_float_positional(c, precision=4), # para que coincida
                      color='purple')
 
             axs.grid('on')
@@ -192,8 +191,9 @@ class MetodoBiseccion(QWidget):
             axs.legend(handles=handles, labels=labels, loc='lower left')
 
             plt.show()
-        except ValueError as e:
-            QMessageBox.warning(self, "Datos inválidos", str(e))
+
+        except Exception as e:
+            QMessageBox.warning(self, "Error al graficar.", str(e))
             return None
 
 
@@ -207,7 +207,6 @@ class MetodoBiseccion(QWidget):
 
 
 if __name__ == "__main__":
-
     app = QApplication(sys.argv)
     w = MetodoBiseccion()
     w.show()

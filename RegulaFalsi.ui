@@ -57,25 +57,6 @@
       </property>
      </widget>
     </item>
-    <item row="6" column="0">
-     <widget class="QComboBox" name="comboBox">
-      <item>
-       <property name="text">
-        <string>1. x^2 - x*exp(x) + 4</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>2. -10*e^(-x/2) * cos(2x)</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>3. x^e</string>
-       </property>
-      </item>
-     </widget>
-    </item>
     <item row="6" column="1">
      <widget class="QLineEdit" name="lineEditA">
       <property name="text">
@@ -83,35 +64,35 @@
       </property>
      </widget>
     </item>
-    <item row="8" column="0">
+    <item row="9" column="0">
      <widget class="QPushButton" name="calcularbutton">
       <property name="text">
        <string>Calcular</string>
       </property>
      </widget>
     </item>
-    <item row="8" column="1">
+    <item row="9" column="1">
      <widget class="QLineEdit" name="lineEditB">
       <property name="text">
        <string>3</string>
       </property>
      </widget>
     </item>
-    <item row="9" column="0">
+    <item row="10" column="0">
      <widget class="QPushButton" name="graficabutton">
       <property name="text">
        <string>Gráfica</string>
       </property>
      </widget>
     </item>
-    <item row="10" column="0">
+    <item row="11" column="0">
      <widget class="QPushButton" name="tablabutton">
       <property name="text">
        <string>Tabla</string>
       </property>
      </widget>
     </item>
-    <item row="11" column="0">
+    <item row="12" column="0">
      <widget class="QPushButton" name="unidad2button">
       <property name="text">
        <string>Regresar</string>
@@ -135,6 +116,25 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
+     </widget>
+    </item>
+    <item row="8" column="0">
+     <widget class="QComboBox" name="comboFuncion">
+      <item>
+       <property name="text">
+        <string>1. x^2 - x*exp(x) + 4 = 0</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>2. -10*e^(-x/2) * cos(2x) = 0</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>3. x^2 -e^x -3x + 2 = 0</string>
+       </property>
+      </item>
      </widget>
     </item>
    </layout>

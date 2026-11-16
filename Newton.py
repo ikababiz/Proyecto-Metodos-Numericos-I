@@ -17,31 +17,25 @@ import matplotlib.lines as mlines
 import numpy as np
 import sympy as sp
 
-EPSILON = 1e-6  # valor muy pequeño > 0
+EPSILON = 1e-5  # valor muy pequeño > 0
 
 CARPETA_UI = Path(__file__).parent # por si en un futuro se mueven directorios
 ENCABEZADOS = ["n", "x_n", "f(x_n)", "f'(x_n)"] # cada metodo llevara su encabezado
 
 # para otros metodos en Qt Designer los objetnames se cambian solo aqui
 LINE_X = "lineEditX"
+COMBO_FUNCION = "comboFuncion"
 BTN_CALCULAR = "calcularbutton"
 BTN_TABLA = "tablabutton"
 BTN_GRAFICA = "graficabutton"
 BTN_VOLVER = "unidad2button"
 
-x = sp.symbols('x')
-deriv = sp.diff(x**2 - x*sp.E**x + 4)
+x_sym = sp.symbols('x')
+#deriv = sp.diff(x**2 - x*sp.E**x + 4)
+# no creo que sea posible dejarlo como global, quizas un nuevo metodo para calcular la derivada sea necesario
+# se reemplaza con derivacion simbplica de SymPy
 
-
-def f(x):
-    return x**2 - x*math.exp(x) + 4
-
-
-def df(n):
-    return float(deriv.evalf(subs={x:n}))
-
-
-def calcular_newton(x_i, epsilon=EPSILON, max_iter=200):
+def calcular_newton(f, df, x_i, epsilon=EPSILON, max_iter=200):
     x_i = float(x_i)
     x_aux = 0
     i = 1
@@ -83,6 +77,16 @@ class MetodoNewton(QWidget):
 
         self.windows = []  # ventanas abiertas (tabla, gráfica) para que Qt no las cierre
 
+        self.funciones_disponibles = \
+        {
+            0: (x_sym ** 2 - x_sym * sp.exp(x_sym) + 4,
+                r'$x^2 - x e^x + 4$'),
+            1: (-10 * sp.exp(-x_sym / 2) * sp.cos(2 * x_sym),
+                r'$-10e^{-x/2} \cos(2x)$'),
+            2: (x_sym ** 2 - sp.exp(x_sym) - 3 * x_sym + 2,
+                r'$x^2 - e^x - 3x + 2$')
+        } # para Newton se necesita SymPy
+
         self.widget(BTN_CALCULAR).clicked.connect(self.calcular)
         self.widget(BTN_GRAFICA).clicked.connect(self.abrir_grafica)
         self.widget(BTN_TABLA).clicked.connect(self.abrir_tabla)
@@ -99,10 +103,26 @@ class MetodoNewton(QWidget):
                 f"Lista de widgets: {existentes}")
         return widg
 
+    def obtener_funcion_actual(self):
+        # ;ee el índice seleccionado en el ComboBox y devuelve (funcion, etiqueta)
+        idx = self.widget(COMBO_FUNCION).currentIndex()
+        return self.funciones_disponibles.get(idx, self.funciones_disponibles[0])
+
+    def funciones_numericas(self):
+        fun, label_latex = self.obtener_funcion_actual()
+
+        deriv_expr = sp.diff(fun, x_sym) # calcula la derivada simbolicamente
+        # lambdify para convertirlas en expresiones numericas de numpy
+        f_num = sp.lambdify(x_sym, fun, 'numpy')
+        df_num = sp.lambdify(x_sym, deriv_expr, 'numpy')
+
+        return f_num, df_num, label_latex # regresa la funcion, la derivada y la etiqueta
+
     def leer_filas(self): # evalua usando calcular_biseccion y regresa filas
         try:
-            x_i = float(self.widget(LINE_X).text())
-            return calcular_newton(x_i)
+            x_i = float(self.widget(LINE_X).text()) # ahora se evalua dependiendo de la funcion
+            f_num, df_num, _ = self.funciones_numericas()
+            return calcular_newton(f_num, df_num, x_i)
         except ValueError as e:
             QMessageBox.warning(self, "Datos inválidos", str(e))
             return None
@@ -113,39 +133,40 @@ class MetodoNewton(QWidget):
             return
 
         n, x_final, fx_final, dfx_final = filas[-1] # la ultima fila
-        QMessageBox.information(
-            self, "Resultado",
-            f"La raíz aproximada es {x_final:.4f}\n"
-            f"Número de iteraciones: {n}\n"
-        ) # el resultado
+        if n >= 199:
+            QMessageBox.warning(
+                self, "Aviso de convergencia",
+                f"El método se detuvo tras {n} iteraciones sin converger bajo la tolerancia esperada.\n"
+                f"Último valor calculado: {x_final:.4f}\n"
+                "Revisa la tabla o la gráfica para analizar el comportamiento."
+            )
+        else:  # converge
+            QMessageBox.information(
+                self, "Resultado",
+                f"La raíz aproximada es {x_final:.4f}\n"
+                f"Número de iteraciones: {n}\n"
+            )  # el resultado
 
     # por ahora no hace nada mas que graficar una misma funcion
     def abrir_grafica(self):
-        # w3 = Graficador()  # del archivo graficador.py, la clase que hace la grafica
-        # self.windows.append(w3)  # se guarda para que Qt no la cierre
-        # w3.show()
+        filas = self.leer_filas()
+        if not filas:
+            return
+
         try:
             x_i = float(self.widget(LINE_X).text())
+            f_num, df_num, label_latex = self.funciones_numericas()
+
             x_aux = x_i
-            fx_i = f(x_i)
-            dfx_i = df(fx_i)
+            fx_i = f_num(x_i)
+            #dfx_i = df(fx_i)
 
-            xi_values   = np.array([x_i])
+            xi_values   = np.array([fila[1] for fila in filas])
             xaux_values = np.array([x_i])
-            fxi_values  = np.array([fx_i])
+            fxi_values  = np.array([fila[2] for fila in filas])
 
-            i = 1
-            while i < 10:
-                i += 1
-                if dfx_i == 0:
-                    break
-                x_i = x_aux - fx_i/dfx_i
-                fx_i = f(x_i)
-                dfx_i = df(x_i)
-                x_aux = x_i
-                xi_values   = np.append(xi_values, x_i)
-                xaux_values = np.append(xaux_values, x_aux)
-                fxi_values  = np.append(fxi_values, fx_i)
+            x_final = xi_values[-1]
+            fx_final = fxi_values[-1]
 
             fig, axs = plt.subplots()
             axs.set_xlabel('x')
@@ -156,11 +177,11 @@ class MetodoNewton(QWidget):
             xaux_values = np.array(xaux_values, dtype=float)
             fxi_values  = np.array(fxi_values, dtype=float)
 
-            xp = np.linspace(-4, 4)
-            yp = xp**2 - xp*np.exp(xp) + 4
+            xp = np.linspace(x_final - 4, x_final + 4, 200) # dominio centrado en la raiz
+            yp = f_num(xp)
 
-            axs.plot(xp, yp, label=r'$x^2 - xe^x + 4$', color='blue')
-            axs.plot(x_i, fx_i, marker='o', label=r'Sol. aproximada: $x = $'+format(x_i, '.5f'), color='purple')
+            axs.plot(xp, yp, label=label_latex, color='blue')
+            axs.plot(x_final, fx_final, marker='o', label=r'Sol. aproximada: $x = $'+format(x_i, '.4f'), color='purple')
 
             axs.grid('on')
             tam = xi_values.size
@@ -188,8 +209,8 @@ class MetodoNewton(QWidget):
 
             plt.show()
 
-        except ValueError as e:
-            QMessageBox.warning(self, "Datos inválidos", str(e))
+        except Exception as e:
+            QMessageBox.warning(self, "Error al graficar.", str(e))
             return None
 
 

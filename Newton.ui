@@ -69,25 +69,6 @@ p, li { white-space: pre-wrap; }
       </property>
      </widget>
     </item>
-    <item row="6" column="0">
-     <widget class="QComboBox" name="comboBox">
-      <item>
-       <property name="text">
-        <string>1. x^2 - x*exp(x) + 4</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>2. -10*e^(-x/2) * cos(2x)</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>3. x^e</string>
-       </property>
-      </item>
-     </widget>
-    </item>
     <item row="6" column="1">
      <widget class="QLineEdit" name="lineEditX">
       <property name="text">
@@ -95,32 +76,51 @@ p, li { white-space: pre-wrap; }
       </property>
      </widget>
     </item>
-    <item row="7" column="0">
+    <item row="8" column="0">
      <widget class="QPushButton" name="calcularbutton">
       <property name="text">
        <string>Calcular</string>
       </property>
      </widget>
     </item>
-    <item row="8" column="0">
+    <item row="9" column="0">
      <widget class="QPushButton" name="graficabutton">
       <property name="text">
        <string>Gráfica</string>
       </property>
      </widget>
     </item>
-    <item row="9" column="0">
+    <item row="10" column="0">
      <widget class="QPushButton" name="tablabutton">
       <property name="text">
        <string>Tabla</string>
       </property>
      </widget>
     </item>
-    <item row="10" column="0">
+    <item row="11" column="0">
      <widget class="QPushButton" name="unidad2button">
       <property name="text">
        <string>Regresar</string>
       </property>
+     </widget>
+    </item>
+    <item row="7" column="0">
+     <widget class="QComboBox" name="comboFuncion">
+      <item>
+       <property name="text">
+        <string>1. x^2 - x*exp(x) + 4 = 0</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>2. -10*e^(-x/2) * cos(2x) = 0</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>3. x^2 -e^x -3x + 2 = 0</string>
+       </property>
+      </item>
      </widget>
     </item>
    </layout>
