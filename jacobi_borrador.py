@@ -115,8 +115,6 @@ def diagonal_dominante(matriz, vector):
             # Actualizamos el valor sum_i^rows |a_ij|, con i != j, en el vector valores_abs.
             valores_abs[i] = np.sum(np.absolute(matriz_copia[i,:])) - abs(matriz_copia.diagonal()[i])
 
-
-
     '''
     Una vez acaba el proceso de pivoteo, verificamos si este
     resultó en una matriz diagonal estrictamente dominante.

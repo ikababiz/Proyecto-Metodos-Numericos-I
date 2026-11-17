@@ -110,47 +110,99 @@ def generar_encabezado(n):
     return ["n"] + [f"x_{i + 1}" for i in range(n)]
 
 
-def diagonal_dominante(M, jacob): # falta intentar cambiar renglones
-    n = M.cols - 1
-    if jacob:
-        return all(abs(M[i, i]) >= sum(abs(M[i, j]) for j in range(n) if j != i) # valor absoluto pivote mayor o igual a la suma del resto
-               for i in range(n)) # all evalua si se cumple la condicion para todos los for, regresa true o false
-    else:
-        return all(abs(M[i, i]) > sum(abs(M[i, j]) for j in range(n) if j != i) # valor absoluto pivote mayor a la suma del resto
-               for i in range(n)) # all evalua si se cumple la condicion para todos los for, regresa true o false
+def diagonal_dominante(matriz, vector):
+    rows    = np.size(matriz, 0)
+    columns = np.size(matriz, 1)
 
-def despejar_variables(M):
-    n = M.rows
-    vars = symbols(f"x_1:{n + 1}")
-    # Falta hacer despejes  <-------------------------------------
-    despejes = ['x_1 = 5x_2 + x_3', 'x_2 = ...'] # ejemplo
+    if rows != columns:
+        return matriz, vector, False
 
-    return despejes # ? imagino que deberia de retornar un arreglo con cada despeje
+    valores_abs  = np.zeros(rows)
+    matriz_copia = np.copy(matriz)
+    vector_copia = np.copy(vector)
+    vector_permutado = np.arange(rows)
+    vector_permutado_copia = np.copy(vector_permutado)
+    vector_permutado_x = np.copy(vector_permutado)
+    vector_permutado_x_copia = np.copy(vector_permutado_x)
+    matriz_permutada = np.identity(rows)
+    matriz_permutada_copia = np.copy(matriz_permutada)
+
+    for i in range(0, rows):
+        aux = abs(matriz_copia.diagonal()[i])
+        valores_abs[i] = np.sum(np.absolute(matriz_copia[i,:])) - aux
+
+        if aux <= valores_abs[i]:
+            aux_k, aux_l = i, i
+            for k in range(i, rows):
+                for l in range(i, columns):
+                    aux_dos = abs(matriz_copia[k, l])
+                    if aux < aux_dos:
+                        aux = aux_dos
+                        aux_k, aux_l = k, l
+
+            matriz_copia[:,[i, aux_l]] = matriz_copia[:,[aux_l, i]]
+            matriz_copia[[i, aux_k]]   = matriz_copia[[aux_k, i]]
+
+            matriz_permutada_copia[:,[i, aux_l]] = matriz_permutada_copia[:,[aux_l, i]]
+            matriz_permutada_copia[[i, aux_k]]   = matriz_permutada_copia[[aux_k, i]]
+
+            vector_copia[i], vector_copia[aux_k] = vector_copia[aux_k], vector_copia[i]
+
+            vector_permutado_copia[i], vector_permutado_copia[aux_k] = vector_permutado_copia[aux_k], vector_permutado_copia[i]
+            vector_permutado_x_copia[i], vector_permutado_x_copia[aux_l] = vector_permutado_x_copia[aux_l], vector_permutado_x_copia[i]
+
+            valores_abs[i] = np.sum(np.absolute(matriz_copia[i,:])) - abs(matriz_copia.diagonal()[i])
+
+    for i in range(0, rows):
+        if valores_abs[i] >= abs(matriz_copia.diagonal()[i]):
+            return matriz, vector, matriz_permutada, vector_permutado, vector_permutado_x, False
+
+    return matriz_copia, vector_copia, matriz_permutada_copia, vector_permutado_copia, vector_permutado_x_copia, True
+
+def despejar_variables(matriz, vector_b, vector_n, px):
+    rows = np.size(matriz, 0)
+    columns = np.size(matriz, 1)
+    diagonal = {}
+    ecuaciones = [""] * rows
+    despejados = [None] * rows
+
+    for i in range(rows):
+        ecuaciones[i] += "("+str(vector_b[i])
+        for j in range(columns):
+            if i != j: ecuaciones[i] += " - "+str(matriz[i, j])+"*x_"+str(px[j])
+        ecuaciones[i] += ")/"+str(matriz[i, i])
+        despejados[i] = sp.parse_expr(ecuaciones[i])
+        diagonal["x_"+str(i)] = vector_n[i]
+
+    return despejados, diagonal
 
 
-def calcular_jacobi(M, jacob):
-    diag = diagonal_dominante(M, jacob)
-    if diag:
-        max_iter = 200
-        filas = []
-        n = 1
-        # sigue el bucle while
-        # despejar cada variable con despejar_variables <---------------------------
-        despejes = despejar_variables(M)
-        # evaluar cada variable dependiendo del metodo
-        if jacob:
-            # formulas Jacobi
-            filas.append(n) # n, x_1, x_2, ...
-            print()
-        else:
-            # formulas Gauss-Seidel
-            filas.append(n)  # n, x_1, x_2, ...
-            print()
-        #n += 1
-    else:
-        print("El sistema no cumple con los requisitos") # esto deberia de ser un Warning
+def calcular_jacobi(matriz, vector_n, diagonal, px, despejados):
+    diagonal_dominante(matriz_
+    vector_n1 = np.zeros(rows)
+    vector_diff = np.zeros(rows)
+    parar = [False] * rows
 
+    i = 0
+    vector_n = vector_n[px]
+    while i < MAX_ITER and not all(parar):
+        for j in range(rows):
+            vector_n1[j] = despejados[j].evalf(subs=diagonal)
+            vector_diff[j] = abs(vector_n1[j] - vector_n[j])
+            parar[j] = MIN_DIFF > vector_diff[j]
 
+        vector_n = np.copy(vector_n1)
+        diagonal = {"x_"+str(px[j]): vector_n1[j] for j in range(rows)}
+
+        print_iteracion(i, diagonal, rows)
+
+        i += 1
+
+    if i == MAX_ITER and not all(parar): print("Se agotaron las iteraciones.")
+
+    print("Solución al sistema:")
+    for j in range(rows):
+        print("\tx_"+str(j)+": "+f"{diagonal['x_'+str(j)]:3.5f}")
 
 
 class VerMatriz(QDialog):
