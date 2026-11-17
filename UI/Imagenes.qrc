@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="img">
+    <file>Img/MAC.png</file>
+    <file>Img/Math_2.png</file>
+    <file>Img/Math.png</file>
+  </qresource>
+</RCC>
