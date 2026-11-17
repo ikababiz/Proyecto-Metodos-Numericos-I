@@ -182,7 +182,7 @@ def despejar_variables(matriz, vector_b, vector_n, px):
     return despejados, diagonal
 
 
-def calcular_jacobi(matriz, vector_b, vector_n, diagonal, px, despejados):
+def calcular_jacobi(matriz, vector_b, vector_n, jacob):
     dominante = True
     matriz, vector_b, _, pb, px, dominante = diagonal_dominante(matriz, vector_b)
 
@@ -205,9 +205,10 @@ def calcular_jacobi(matriz, vector_b, vector_n, diagonal, px, despejados):
             vector_n1[j] = despejados[j].evalf(subs=diagonal)
             vector_diff[j] = abs(vector_n1[j] - vector_n[j])
             parar[j] = EPSILON > vector_diff[j]
+            if not jacob: diagonal = {"x_"+str(px[j]): vector_n1[j] for j in range(rows)}
 
         vector_n = np.copy(vector_n1)
-        diagonal = {"x_"+str(px[j]): vector_n1[j] for j in range(rows)}
+        if jacob: diagonal = {"x_"+str(px[j]): vector_n1[j] for j in range(rows)}
 
         filas.append([i] + [float(diagonal['x_'+str(j)]) for j in range(rows)])
         
@@ -358,7 +359,8 @@ class MetodoJacobi(QWidget):
             self.jacob = self.widget(R_JACOBI).isChecked() # detecta el metodo elegido por el usuario
             A = np.array(self.sistema[:, :-1].tolist(), dtype=float)
             b = np.array(self.sistema[:, -1].tolist(), dtype=float).flatten()
-            return calcular_jacobi(A, b, np.ones(A.shape[0])) # envia el sistema y el metodo
+            # FALTA VECTOR N INTRODUCIDO POR EL USUSARIO
+            return calcular_jacobi(A, b, vector_n, jacob) # envia el sistema y el metodo
         except ValueError as e:
             QMessageBox.warning(self, "Error", str(e)) # error generico
             return None
