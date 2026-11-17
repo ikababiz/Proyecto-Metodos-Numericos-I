@@ -3,6 +3,8 @@ from pathlib import Path
 import sys
 import io
 import shutil
+import numpy as np
+import sympy as sp
 
 from PySide6.QtCore import Signal
 from PySide6.QtWidgets import (
@@ -22,6 +24,7 @@ from sympy.parsing.sympy_parser import (
 from Tabla_resultados import VentanaTabla
 
 EPSILON = 1e-6  # valor muy pequeño > 0
+MAX_ITER = 100
 
 CARPETA_UI = Path(__file__).parent
 
@@ -114,17 +117,19 @@ def diagonal_dominante(matriz, vector):
     rows    = np.size(matriz, 0)
     columns = np.size(matriz, 1)
 
+    vector_permutado = np.arange(rows)
+    matriz_permutada = np.identity(rows)
+
     if rows != columns:
-        return matriz, vector, False
+        return matriz, vector, matriz_permutada, vector_permutado, vector_permutado, False
 
     valores_abs  = np.zeros(rows)
     matriz_copia = np.copy(matriz)
     vector_copia = np.copy(vector)
-    vector_permutado = np.arange(rows)
     vector_permutado_copia = np.copy(vector_permutado)
     vector_permutado_x = np.copy(vector_permutado)
     vector_permutado_x_copia = np.copy(vector_permutado_x)
-    matriz_permutada = np.identity(rows)
+
     matriz_permutada_copia = np.copy(matriz_permutada)
 
     for i in range(0, rows):
@@ -177,11 +182,21 @@ def despejar_variables(matriz, vector_b, vector_n, px):
     return despejados, diagonal
 
 
-def calcular_jacobi(matriz, vector_n, diagonal, px, despejados):
-    diagonal_dominante(matriz_
+def calcular_jacobi(matriz, vector_b, vector_n, diagonal, px, despejados):
+    dominante = True
+    matriz, vector_b, _, pb, px, dominante = diagonal_dominante(matriz, vector_b)
+
+    if not dominante:
+        raise ValueError("La matriz no se puede reordenar para que sea estrictamente diagonal dominante.")
+
+    despejados, diagonal = despejar_variables(matriz, vector_b, vector_n, px)
+
+    rows = np.size(matriz, 0)
+    columns = np.size(matriz, 1)
     vector_n1 = np.zeros(rows)
     vector_diff = np.zeros(rows)
     parar = [False] * rows
+    filas = []
 
     i = 0
     vector_n = vector_n[px]
@@ -189,20 +204,18 @@ def calcular_jacobi(matriz, vector_n, diagonal, px, despejados):
         for j in range(rows):
             vector_n1[j] = despejados[j].evalf(subs=diagonal)
             vector_diff[j] = abs(vector_n1[j] - vector_n[j])
-            parar[j] = MIN_DIFF > vector_diff[j]
+            parar[j] = EPSILON > vector_diff[j]
 
         vector_n = np.copy(vector_n1)
         diagonal = {"x_"+str(px[j]): vector_n1[j] for j in range(rows)}
 
-        print_iteracion(i, diagonal, rows)
-
+        filas.append([i] + [float(diagonal['x_'+str(j)]) for j in range(rows)])
+        
         i += 1
 
     if i == MAX_ITER and not all(parar): print("Se agotaron las iteraciones.")
 
-    print("Solución al sistema:")
-    for j in range(rows):
-        print("\tx_"+str(j)+": "+f"{diagonal['x_'+str(j)]:3.5f}")
+    return filas
 
 
 class VerMatriz(QDialog):
@@ -342,8 +355,10 @@ class MetodoJacobi(QWidget):
             QMessageBox.warning(self, "Error", "Ingrese un sistema de ecuaciones válido primero.")
             return None
         try:
-            self.jacob = self.widget(R_JACOBI).ischecked() # detecta el metodo elegido por el usuario
-            return calcular_jacobi(self.sistema, self.jacob) # envia el sistema y el metodo
+            self.jacob = self.widget(R_JACOBI).isChecked() # detecta el metodo elegido por el usuario
+            A = np.array(self.sistema[:, :-1].tolist(), dtype=float)
+            b = np.array(self.sistema[:, -1].tolist(), dtype=float).flatten()
+            return calcular_jacobi(A, b, np.ones(A.shape[0])) # envia el sistema y el metodo
         except ValueError as e:
             QMessageBox.warning(self, "Error", str(e)) # error generico
             return None
@@ -399,7 +414,7 @@ class MetodoJacobi(QWidget):
         if not filas:
             return
         n = int(self.widget(TAMANO).text())
-        encabezado = self.generar_encabezado(n)
+        encabezado = generar_encabezado(n)
         nombre = "Jacobi" if self.widget(R_JACOBI).isChecked() else "Gauss-Seidel"
         w2 = VentanaTabla(f"Método de {nombre}", encabezado, filas)
         self.windows.append(w2)
