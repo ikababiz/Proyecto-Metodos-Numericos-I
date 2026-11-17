@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>743</width>
-    <height>666</height>
+    <width>1199</width>
+    <height>835</height>
    </rect>
   </property>
   <property name="font">
@@ -25,7 +25,8 @@
    <string extracomment="Muestra la grafica de la funcion"/>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(255, 239, 230)
+   <string notr="true">background-color: rgb(255, 239, 230);
+color: black
 </string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -67,7 +68,7 @@
    <item row="3" column="1" colspan="4">
     <layout class="QVBoxLayout" name="verticalLayout_4">
      <item>
-      <widget class="QComboBox" name="comboBox">
+      <widget class="QComboBox" name="comboFuncion">
        <property name="font">
         <font>
          <family>Arial</family>
@@ -85,17 +86,17 @@
        </property>
        <item>
         <property name="text">
-         <string>1. x^2 - x*exp(x) + 4</string>
+         <string>1. x^2 - x*exp(x) + 4 = 0</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>2. -10*e^(-x/2) * cos(2x)</string>
+         <string>2. -10*e^(-x/2) * cos(2x) = 0</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>3. x^e</string>
+         <string>3. x^2 -e^x -3x + 2 = 0</string>
         </property>
        </item>
       </widget>
