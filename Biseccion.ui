@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>709</width>
+    <width>717</width>
     <height>667</height>
    </rect>
   </property>
@@ -42,7 +42,7 @@
      <widget class="QLabel" name="label_7">
       <property name="font">
        <font>
-        <family>Chalkboard SE</family>
+        <family>Arial</family>
         <pointsize>18</pointsize>
        </font>
       </property>
@@ -58,7 +58,7 @@
     <rect>
      <x>250</x>
      <y>10</y>
-     <width>221</width>
+     <width>229</width>
      <height>71</height>
     </rect>
    </property>
@@ -67,7 +67,7 @@
      <widget class="QLabel" name="label">
       <property name="font">
        <font>
-        <family>Chalkboard SE</family>
+        <family>Arial</family>
         <pointsize>13</pointsize>
         <weight>75</weight>
         <italic>false</italic>
@@ -96,7 +96,9 @@
      <widget class="QLabel" name="label_2">
       <property name="font">
        <font>
-        <family>Chalkboard SE</family>
+        <family>Arial</family>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -120,7 +122,7 @@
      <widget class="QComboBox" name="comboBox">
       <property name="font">
        <font>
-        <family>Chalkboard SE</family>
+        <family>Arial</family>
         <pointsize>13</pointsize>
        </font>
       </property>
@@ -166,7 +168,9 @@
      <widget class="QLabel" name="label_3">
       <property name="font">
        <font>
-        <family>Chalkboard SE</family>
+        <family>Arial</family>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -190,7 +194,7 @@
      <widget class="QLabel" name="label_4">
       <property name="font">
        <font>
-        <family>Chalkboard SE</family>
+        <family>Arial</family>
        </font>
       </property>
       <property name="text">
@@ -214,7 +218,7 @@
      <widget class="QLabel" name="label_5">
       <property name="font">
        <font>
-        <family>Chalkboard SE</family>
+        <family>Arial</family>
        </font>
       </property>
       <property name="text">
@@ -238,7 +242,7 @@
      <widget class="QLineEdit" name="lineEditA">
       <property name="font">
        <font>
-        <family>Chalkboard SE</family>
+        <family>Arial</family>
         <pointsize>18</pointsize>
        </font>
       </property>
@@ -273,7 +277,7 @@ gridline-color: rgb(255, 0, 17);</string>
      <widget class="QLineEdit" name="lineEditB">
       <property name="font">
        <font>
-        <family>Chalkboard SE</family>
+        <family>Arial</family>
         <pointsize>18</pointsize>
        </font>
       </property>
@@ -301,7 +305,7 @@ gridline-color: rgb(255, 0, 17);</string>
      <widget class="QPushButton" name="graficabutton">
       <property name="font">
        <font>
-        <family>Chalkboard SE</family>
+        <family>Arial</family>
         <pointsize>18</pointsize>
        </font>
       </property>
@@ -329,7 +333,7 @@ gridline-color: rgb(255, 0, 17);</string>
      <widget class="QPushButton" name="calcularbutton">
       <property name="font">
        <font>
-        <family>Chalkboard SE</family>
+        <family>Arial</family>
         <pointsize>18</pointsize>
        </font>
       </property>
@@ -351,7 +355,7 @@ gridline-color: rgb(255, 0, 17);</string>
      <widget class="QPushButton" name="tablabutton">
       <property name="font">
        <font>
-        <family>Chalkboard SE</family>
+        <family>Arial</family>
         <pointsize>18</pointsize>
        </font>
       </property>
@@ -392,7 +396,7 @@ gridline-color: rgb(255, 0, 17);</string>
     <rect>
      <x>80</x>
      <y>580</y>
-     <width>82</width>
+     <width>83</width>
      <height>34</height>
     </rect>
    </property>
@@ -401,7 +405,7 @@ gridline-color: rgb(255, 0, 17);</string>
      <widget class="QPushButton" name="unidad2button">
       <property name="font">
        <font>
-        <family>Chalkboard SE</family>
+        <family>Arial</family>
         <pointsize>18</pointsize>
        </font>
       </property>
