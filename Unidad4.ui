@@ -6,71 +6,208 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>819</width>
-    <height>748</height>
+    <width>725</width>
+    <height>667</height>
    </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Arial</family>
+   </font>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>370</x>
-     <y>70</y>
-     <width>76</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Unidad 4</string>
-   </property>
-  </widget>
-  <widget class="QWidget" name="verticalLayoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>160</x>
-     <y>120</y>
-     <width>511</width>
-     <height>491</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout_4">
-    <item>
-     <widget class="QTextEdit" name="textEdit_3">
-      <property name="html">
-       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 239, 230);
+color: black
+</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="3" column="0" colspan="2">
+    <widget class="QPushButton" name="menubutton">
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>18</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="text">
+      <string>Regresar</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="2">
+    <widget class="QPushButton" name="DoolittleButton">
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>18</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="text">
+      <string>Doolittle/Crout</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="2">
+    <widget class="QPushButton" name="CholeskiButton">
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>18</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="text">
+      <string>Choleski</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>200</width>
+         <height>100</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">image: url(:/img/Img/MAC.png);</string>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="0" column="0" colspan="2">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>36</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Unidad 4&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="verticalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Fixed</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>15</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QTextEdit" name="textEdit_3">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: transparent;</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+       <property name="html">
+        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu Bold'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;lorem ipsum lorem ipsum lorem ipsumlorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="DoolittleButton">
-      <property name="text">
-       <string>Doolittle/Crout</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="CholeskiButton">
-      <property name="text">
-       <string>Choleski</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="menubutton">
-      <property name="text">
-       <string>Regresar</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:18pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman,serif';&quot;&gt;Esta unidad se basa en descomponer matrices para llegar a la solución, se trata de resolver ecuaciones lineales de la forma &lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman,serif'; font-style:italic;&quot;&gt;AX=B&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman,serif';&quot;&gt;. La idea central es descomponer la matriz en el producto de dos matrices triangulares, a esto se le llama &lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman,serif'; font-style:italic;&quot;&gt;factorización LU&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman,serif';&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman,serif'; font-style:italic;&quot;&gt;L&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman,serif';&quot;&gt; significa de una matriz triangular inferior (Lower) y &lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman,serif'; font-style:italic;&quot;&gt;U&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman,serif';&quot;&gt; trata de una matriz triangular superior (Upper) de modo que &lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman,serif'; font-style:italic;&quot;&gt;A=LU&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman,serif';&quot;&gt;. Esto permite resolver el sistema en dos pasos muy rápidos y si repetir la eliminación, para halla el vector intermedio se hace una sustitución hacia adelante (&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman,serif'; font-style:italic;&quot;&gt;LY=B&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman,serif';&quot;&gt;), para hallar la solución final se hace una sustitución hacia atrás (&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman,serif'; font-style:italic;&quot;&gt;UX=Y&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman,serif';&quot;&gt;).&lt;/span&gt; &lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Symbol';&quot;&gt;·&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:7pt;&quot;&gt;      &lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman,serif'; font-weight:600;&quot;&gt;Método Doolittle&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman,serif';&quot;&gt;: Este método establece que todos los elementos de la diagonal principal de la matriz triangular inferior L son iguales a 1.&lt;/span&gt; &lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Symbol';&quot;&gt;·&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:7pt;&quot;&gt;     &lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman,serif'; font-weight:600;&quot;&gt;Método de Crout&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman,serif';&quot;&gt;: Es el enfoque simétrico opuesto al Doolittle, establece que todos los elementos de la diagonal principal de la matriz triangular superior U son iguales a 1.&lt;/span&gt; &lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Symbol';&quot;&gt;·&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:7pt;&quot;&gt;  &lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman,serif'; font-weight:600;&quot;&gt;Método de Cholesky&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman,serif';&quot;&gt;: Es un caso especial de factorización para matrices simétricas y definidas positivas. En lugar de dos matrices distintas, descompone la matriz como el producto de una matriz triangular inferior por su propia transpuesta &lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman,serif'; font-style:italic;&quot;&gt;A=LL^t&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman,serif';&quot;&gt;. &lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman,serif';&quot;&gt;Este método tiene algunas restricciones, a diferencia en el de doolittle o crout, aquí ninguna diagonal tiene unos; las diagonales de &lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman,serif'; font-style:italic;&quot;&gt;L&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman,serif';&quot;&gt; y &lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman,serif'; font-style:italic;&quot;&gt;L^t&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman,serif';&quot;&gt; son idénticas y se calculan mediante raíces cuadradas. &lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman,serif';&quot;&gt;Su mayor ventaja de este método es que requiere aproximadamente la mitad de las operaciones y la mitad de la memoria que doolittle o crout, ya que solo se calcula una matriz triangular.&lt;/span&gt; &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="verticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Fixed</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>15</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+  </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="UI/Imagenes.qrc"/>
+ </resources>
  <connections/>
 </ui>
