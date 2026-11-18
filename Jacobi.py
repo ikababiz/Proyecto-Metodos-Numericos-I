@@ -33,6 +33,7 @@ R_JACOBI = "jacobiRadio"
 R_GAUSS_SEIDEL = "gaussSeidelRadio"
 TAMANO = "tamEdit"
 MATRIZ = "matButton"
+VECTOR = "vecButton"
 BTN_CALCULAR = "calcButton"
 TABLA = "tablaButton"
 BTN_VOLVER = "unidad3button"
@@ -60,7 +61,7 @@ def datos_a_matriz(datos):
         raise ValueError(f"No se pudo interpretar la matriz: {e}")
 
 
-def matriz_a_latex(M, aumentada=True):
+def matriz_a_latex(M, aumentada):
     """Devuelve el LaTeX de la matriz (acepta tanto lista de datos como objeto Matrix de SymPy)."""
     if not isinstance(M, Matrix):
         M = datos_a_matriz(M)
@@ -71,30 +72,6 @@ def matriz_a_latex(M, aumentada=True):
         " & ".join(sp.latex(M[i, j]) for j in range(M.cols))
         for i in range(M.rows))
     return (r"\left(\begin{array}{" + "c" * n + "|c}" + cuerpo + r"\end{array}\right)")
-
-
-def solucion_a_latex(M):
-    xs = symbols(f"x_1:{M.cols}") # se declaran x_n symbols, dependiendo del tamanio de n seran x_1,...,x_n
-    sol = sp.linsolve((M[:, :-1], M[:, -1]), *xs) # de la matrix linsolve devuelve los valores de resultados en los symbols declarados
-
-    if sol == sp.EmptySet:
-        return None, "El sistema no tiene solución." #incompatible indeterminable
-
-    valores = list(sol)[0]
-    libres = [x for x in xs if any(v.has(x) for v in valores)]
-
-    vector = (r"\begin{pmatrix}"
-              + r" \\ ".join(sp.latex(v) for v in valores)
-              + r"\end{pmatrix}") # se hace el vector solucion
-    latex = r"\overline{x} = " + vector
-    if libres: # solo si el sistema tiene infinitas soluciones
-        latex += r",\quad " + ", ".join(sp.latex(x) for x in libres) + r" \in \mathbb{R}"
-        nombres = ", ".join(str(x) for x in libres)
-        nota = f"El sistema tiene soluciones infinitas. Variables libres: {nombres}."
-    else:
-        nota = "Solución única."
-    return latex, nota # devuelve la cadena y la nota dependiendo del caso de solucion
-
 
 
 def latex_a_pixmap(latex, dpi=150):
@@ -120,7 +97,7 @@ def diagonal_dominante(matriz, vector):
     vector_permutado = np.arange(rows)
     matriz_permutada = np.identity(rows)
 
-    if rows != columns:
+    if rows != columns: # creo que esto nunca pasa por previas validaciones
         return matriz, vector, matriz_permutada, vector_permutado, vector_permutado, False
 
     valores_abs  = np.zeros(rows)
@@ -186,7 +163,9 @@ def calcular_jacobi(matriz, vector_b, vector_n, jacob):
     dominante = True
     matriz, vector_b, _, pb, px, dominante = diagonal_dominante(matriz, vector_b)
 
-    if not dominante:
+    if jacob and not dominante:
+        raise ValueError("La matriz no se puede reordenar para que sea diagonal dominante.")
+    elif not dominante:
         raise ValueError("La matriz no se puede reordenar para que sea estrictamente diagonal dominante.")
 
     despejados, diagonal = despejar_variables(matriz, vector_b, vector_n, px)
@@ -214,7 +193,6 @@ def calcular_jacobi(matriz, vector_b, vector_n, jacob):
         
         i += 1
 
-    if i == MAX_ITER and not all(parar): print("Se agotaron las iteraciones.")
 
     return filas
 
@@ -222,7 +200,7 @@ def calcular_jacobi(matriz, vector_b, vector_n, jacob):
 class VerMatriz(QDialog):
     def __init__(self, datos, parent=None, aumentada=True):
         super().__init__(parent)
-        self.setWindowTitle("Confirmar matriz")
+        self.setWindowTitle("Confirmar")
 
         latex = matriz_a_latex(datos, aumentada)
         pixmap = latex_a_pixmap(latex)
@@ -231,7 +209,7 @@ class VerMatriz(QDialog):
         imagen.setPixmap(pixmap)
         imagen.setAlignment(Qt.AlignCenter)
 
-        pregunta = QLabel("¿La matriz ingresada es correcta?")
+        pregunta = QLabel("¿Los datos ingresados son correctos?")
         pregunta.setAlignment(Qt.AlignCenter)
 
         botones = QDialogButtonBox()
@@ -246,31 +224,45 @@ class VerMatriz(QDialog):
         layout.addWidget(botones)
 
 
-class IngresarnaMatriz(QWidget):
-    conf = Signal(list)
+class IngresarMatriz(QWidget): # falta implementar que si ya hay matriz del mismo tamano la despliege
+    conf = Signal(list) # emite senal para canfirmar
+    def __init__(self,  filas, columnas, titulo="Ingresar Matriz", parent=None):
+        super().__init__(parent)
+        self.n = filas
+        self.n_1 = columnas
+        if columnas != 1:
+            self.tipo = True  # true es Matriz false es Vector
+            self.resize(min(800, 90 * (columnas)), min(600, 50 * (filas + 2)))  # tamano dinamico
+        else:
+            self.tipo = False
+            self.resize(min(800, 300 * (columnas)), min(600, 50 * (filas + 2)))  # tamano dinamico
+        self.setWindowTitle(titulo)
 
-    def __init__(self, n):
-        super().__init__()
-        self.n = n
-        self.setWindowTitle("Ingresar Sistema de Ecuaciones")
-        self.resize(min(800, 90 * (n)), min(600, 50 * (n + 2)))
 
-        self.mat = QTableWidget(n, n + 1)
-        self.mat.setHorizontalHeaderLabels([f"x_{j + 1}" for j in range(n)] + ["b"])
-        self.mat.setVerticalHeaderLabels([f"Ec. {i + 1}" for i in range(n)])
+        self.mat = QTableWidget(filas, columnas) # matriz de filas x columnas
+        if self.tipo:
+            self.mat.setHorizontalHeaderLabels([f"a_i{j+1}" for j in range(columnas)]) # nombre de columnas
+            self.mat.setVerticalHeaderLabels([f"a_{i + 1}j" for i in range(filas)] ) # nombre de cada fila
+        else:
+            self.mat.setHorizontalHeaderLabels([f"v_i1"])  # nombre de columnas
+            self.mat.setVerticalHeaderLabels([f"v_{i + 1}1" for i in range(filas)])  # nombre de cada fila
         self.mat.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
-        for i in range(n):
-            for j in range(n + 1):
-                celda = QTableWidgetItem("")
+        for i in range(filas):
+            for j in range(columnas):
+                celda = QTableWidgetItem("") # vacias al inicio
                 celda.setTextAlignment(Qt.AlignRight | Qt.AlignVCenter)
-                self.mat.setItem(i, j, celda)
+                self.mat.setItem(i, j, celda) # arma la tabla vacia
 
-        self.info = QLabel(f"Llene la matriz de coeficientes {n}x{n} y la columna b de términos independientes")
+        if self.tipo:
+            self.info = QLabel(f"Introduzca los valores para la matriz A<sub>{filas}&times;{columnas}</sub>")
+        else:
+            self.info = QLabel(f"Introduzca los valores para el vector inicial V<sub>0</sub>")
         self.info.setWordWrap(True)
 
         confButton = QPushButton("Confirmar")
         confButton.clicked.connect(self.confirmar)
+        # Para pruebas. Porque da hueva escribir matrices
         randButton = QPushButton("RandomFill")
         randButton.clicked.connect(self.random_fill)
 
@@ -281,16 +273,20 @@ class IngresarnaMatriz(QWidget):
         layout.addWidget(confButton)
 
     def confirmar(self):
-        datos = self.leer_datos()
+        datos = self.leer_datos() # al presionar el boton de confirmar se llama  leer_datos
+        # validaciones
         for i, fila in enumerate(datos):
             for j, texto in enumerate(fila):
-                if texto == "":
-                    self.mat.setCurrentCell(i, j)
-                    QMessageBox.warning(self, "Sistema incompleto", f"La celda a_{i + 1}{j + 1} está vacía")
+                if texto == "": # si esta vacio
+                    self.mat.setCurrentCell(i, j) # highlights (no se como se dice en espanol)
+                    QMessageBox.warning(self, "Faltan datos.", f"La celda a_{i+1}{j+1} está vacía")
                     return
 
-        try:
-            vista = VerMatriz(datos, parent=self, aumentada=True)
+        try: # trata de visualizarla
+            if self.n_1 != 1:
+                vista = VerMatriz(datos, parent=self, aumentada=True)
+            else:
+                vista = VerMatriz(datos, parent=self, aumentada=False)
         except (ValueError, RuntimeError) as e:
             QMessageBox.warning(self, "Error", str(e))
             return
@@ -298,14 +294,36 @@ class IngresarnaMatriz(QWidget):
         if vista.exec():
             self.conf.emit(datos)
             self.close()
+        # else no hace nada, deja la tabla abierta para editar
+
 
     def leer_datos(self):
-        return [[self.mat.item(i, j).text().strip() for j in range(self.n + 1)] for i in range(self.n)]
+        return [[self.mat.item(i, j).text().strip() for j in range(self.n_1)] for i in range(self.n)] # strip saca el texto a String
+            # de la tabla en cada posicion, ij lee el texto
 
-    def random_fill(self):
+    def random_fill(self): # para llenar la matriz con numeros aleatorios para hacer pruebas rapidas
         for i in range(self.n):
-            for j in range(self.n + 1):
-                self.mat.item(i, j).setText(str(random.randint(-9, 9)))
+            for j in range(self.n_1):
+                self.mat.item(i,j).setText(str(random.randint(-9, 9)))
+
+
+class VentanaLaTeX(QDialog):
+    def __init__(self, titulo, latex, nota="", parent=None):
+        super().__init__(parent)
+        self.setWindowTitle(titulo)
+        imagen = QLabel()
+        imagen.setPixmap(latex_a_pixmap(latex))
+        imagen.setAlignment(Qt.AlignCenter)
+        layout = QVBoxLayout(self)
+        layout.addWidget(imagen)
+        if nota:
+            etiqueta = QLabel(nota)
+            etiqueta.setAlignment(Qt.AlignCenter)
+            layout.addWidget(etiqueta)
+        botones = QDialogButtonBox(QDialogButtonBox.Ok)
+        botones.accepted.connect(self.accept)
+        layout.addWidget(botones)
+
 
 class MetodoJacobi(QWidget):
     volver = Signal()
@@ -323,12 +341,14 @@ class MetodoJacobi(QWidget):
 
         self.windows = []
         self.sistema = None
+        self.vectorInicial = None
 
         # Configuración inicial por defecto
         self.widget(R_JACOBI).setChecked(True)
 
         # Conexiones de botones
         self.widget(MATRIZ).clicked.connect(self.ingresar_matriz)
+        self.widget(VECTOR).clicked.connect(self.ingresar_vector)
         self.widget(BTN_CALCULAR).clicked.connect(self.calcular_solucion)
         self.widget(TABLA).clicked.connect(self.tabla)
         self.widget(BTN_VOLVER).clicked.connect(self.volver.emit)
@@ -355,14 +375,21 @@ class MetodoJacobi(QWidget):
         if self.sistema is None: # Si no hay sistema ingresado
             QMessageBox.warning(self, "Error", "Ingrese un sistema de ecuaciones válido primero.")
             return None
+        if self.vectorInicial is None:  # si no hay Matrix
+            QMessageBox.warning(self, "Error", "Ingrese un Vector Inicial primero.")
+            return
+        if self.sistema.cols-1 != self.vectorInicial.rows:
+            QMessageBox.warning(self, "Error", "El vector inicial no coincide con el tamaño de la matriz."
+                                               "\nRecuerda que las columnas de la matriz deben coincidir exactamente con las filas del vector.")
+            return
         try:
             self.jacob = self.widget(R_JACOBI).isChecked() # detecta el metodo elegido por el usuario
             A = np.array(self.sistema[:, :-1].tolist(), dtype=float)
             b = np.array(self.sistema[:, -1].tolist(), dtype=float).flatten()
-            # FALTA VECTOR N INTRODUCIDO POR EL USUSARIO
-            return calcular_jacobi(A, b, vector_n, jacob) # envia el sistema y el metodo
+            vector_n = np.array(self.vectorInicial.tolist(), dtype=float).flatten()
+            return calcular_jacobi(A, b, vector_n, self.jacob) # envia el sistema y el metodo
         except ValueError as e:
-            QMessageBox.warning(self, "Error", str(e)) # error generico
+            QMessageBox.warning(self, "Error: ", str(e)) # error generico
             return None
 
     def ingresar_matriz(self):
@@ -370,46 +397,53 @@ class MetodoJacobi(QWidget):
         if n is None:
             return
 
-        wind = IngresarnaMatriz(n)
+        wind = IngresarMatriz(n, n+1, titulo="Ingresar la Matriz A")
         wind.conf.connect(self.recibir_matriz)
         self.windows.append(wind)
         wind.show()
 
+    def ingresar_vector(self):
+        n = self.leer_tamano()
+        if n is None:  # no deberia de pasar, ya esta validado
+            return
+
+        windV = IngresarMatriz(n, 1, titulo="Ingresar el Vector Inicial")  # se abre la ventana de tabla del tamano leido
+        windV.conf.connect(self.recibir_vector)
+        self.windows.append(windV)
+        windV.show()
+
     def recibir_matriz(self, datos):
         self.sistema = datos_a_matriz(datos)
 
+    def recibir_vector(self, datos):
+        self.vectorInicial = datos_a_matriz(datos)  # al confirmar el vector de SymPy almacena los datos ingresados para v0
+
     def calcular_solucion(self): # Funciona con sp.solve pero seria ideal que llame calcular_jacobi y de la ultima iteracion muestre el resultado al que convergen
-        if self.sistema is None:
-            QMessageBox.warning(self, "Error", "Ingrese un sistema de ecuaciones válido primero.")
+        filas = self.leer_filas()
+        if not filas:
             return
 
-        latex, nota = solucion_a_latex(self.sistema)
-        if latex is None:
-            QMessageBox.information(self, "Solución", nota)
-            return
+        i_final = filas[-1][0] # la ultima iteracion
+        solucion = filas[-1][1:] # toda le fila excepto la primer columna (i)
+
+        # lates = solucion_a_latex(ctm)
+        # se arma la solucion en latex
+        vec_sol = r" \\ ".join([f"{v:.4f}" for v in solucion])
+        latex = rf"\overline{{x}} \approx \begin{{pmatrix}} {vec_sol} \end{{pmatrix}}"
+        if self.widget(R_JACOBI).isChecked():
+            nombre = "Jacobi"
+        else:
+            nombre = "Gauss-Seidel"
+        if i_final >= MAX_ITER-1:
+            nota = f"El método de {nombre} se detuvo tras {i_final} iteraciones sin converger bajo la tolerancia esperada.\n"
+        else:
+            nota = f"Convergencia alcanzada con el metodo de {nombre} tras {i_final} iteraciones."
+
         try:
-            QDialog()  # placeholder
-            from PySide6.QtWidgets import QDialogButtonBox
-            class VentanaLaTeX(QDialog):
-                def __init__(self, titulo, latex, nota="", parent=None):
-                    super().__init__(parent)
-                    self.setWindowTitle(titulo)
-                    imagen = QLabel()
-                    imagen.setPixmap(latex_a_pixmap(latex))
-                    imagen.setAlignment(Qt.AlignCenter)
-                    layout = QVBoxLayout(self)
-                    layout.addWidget(imagen)
-                    if nota:
-                        etiqueta = QLabel(nota)
-                        etiqueta.setAlignment(Qt.AlignCenter)
-                        layout.addWidget(etiqueta)
-                    botones = QDialogButtonBox(QDialogButtonBox.Ok)
-                    botones.accepted.connect(self.accept)
-                    layout.addWidget(botones)
-
-            VentanaLaTeX("Solución del sistema", latex, nota, parent=self).exec()
+            VentanaLaTeX("Solución aproximada del sistema", latex, nota = nota, parent=self).exec()
         except RuntimeError as e:
-            QMessageBox.information(self, "Solución", f"{nota}\n\n{latex}")
+            QMessageBox.information(self, "Solución en texto plano.", f"{nota}\n{latex}") # Si la ventana falla, sale en texto plano
+
 
     def tabla(self):
         filas = self.leer_filas()
