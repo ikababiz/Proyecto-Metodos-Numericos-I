@@ -68,26 +68,24 @@ def matriz_a_latex(M, aumentada, aumento=1): #Devuelve el LaTeX de la matriz.
     return r"\left(\begin{array}{" + formato_cols + r"}" + cuerpo + r"\end{array}\right)" # regresa una cadena de texto en formato LaTeX
 
 def solucion_a_latex(M):
-    xs = symbols(f"x_1:{M.cols}") # se declaran x_n symbols, dependiendo del tamanio de n seran x_1,...,x_n
-    sol = sp.linsolve((M[:, :-1], M[:, -1]), *xs) # de la matrix linsolve devuelve los valores de resultados en los symbols declarados
+    A = M[:, :-1]
+    b = M[:, -1]
 
-    if sol == sp.EmptySet:
-        return None, "El sistema no tiene solución." #incompatible indeterminable
+    try:
+        A_inv = A.inv()
+    except Exception:
+        raise ValueError(f"Error: la matriz ingresada es singular, es decir, su derterminante es igual a cero, "
+                         f"por lo que no tiene inversa y así no se puede aplicar el método.")
 
-    valores = list(sol)[0]
-    libres = [x for x in xs if any(v.has(x) for v in valores)]
+    sol = A_inv * b
 
+    valores = list(sol)
     vector = (r"\begin{pmatrix}"
               + r" \\ ".join(sp.latex(v) for v in valores)
               + r"\end{pmatrix}") # se hace el vector solucion
     latex = r"\overline{x} = " + vector
-    if libres: # solo si el sistema tiene infinitas soluciones
-        latex += r",\quad " + ", ".join(sp.latex(x) for x in libres) + r" \in \mathbb{R}"
-        nombres = ", ".join(str(x) for x in libres)
-        nota = f"El sistema tiene soluciones infinitas. Variables libres: {nombres}."
-    else:
-        nota = "Solución única."
-    return latex, nota # devuelve la cadena y la nota dependiendo del caso de solucion
+
+    return latex
 
 
 def latex_a_pixmap(latex, dpi=200):
@@ -109,6 +107,12 @@ def generar_pasos_detallados(M):
     n = M.cols - 1
     I = sp.eye(n)
     A_aumentada = A.row_join(I)
+    try:
+        A_inv = A.inv()
+    except Exception:
+        raise ValueError(f"Error: la matriz ingresada es singular, es decir, su derterminante es igual a cero, "
+                            f"por lo que no tiene inversa y así no se puede aplicar el método.")
+
     pasos_lista = [] # para append
 
     # Matriz inicial
@@ -127,7 +131,6 @@ def generar_pasos_detallados(M):
     })
 
     # Paso 2
-    A_inv = A.inv()
     A_aumentada = I.row_join(A_inv)
     latex_A_res = matriz_a_latex(A_aumentada, True, n)
     latex_A_inv = matriz_a_latex(A_inv, False)
@@ -407,10 +410,13 @@ class MetodoInversa(QWidget):
             QMessageBox.warning(self, "Error", "Ingrese un sistema de ecuaciones válido primero.")
             return
 
-        latex, nota = solucion_a_latex(self.sistema)
-        if latex is None:
-            QMessageBox.information(self, "Solucíón.", nota)
+        try:
+            latex = solucion_a_latex(self.sistema)
+        except ValueError as e:
+            QMessageBox.warning(self, "Matriz singular.", str(e))
             return
+        nota = "Solución exacta del sistema."
+
         try:
             VentanaLaTeX("Solución del sistema", latex, nota, parent=self).exec()
         except RuntimeError as e:
@@ -424,7 +430,7 @@ class MetodoInversa(QWidget):
         try:
             pasos_lista = generar_pasos_detallados(self.sistema)
             # trata de hacer el metodo y cacha la lista de pasos de texto en formato LaTeX
-            ventana_pasos = VentanaPasosDetallados(pasos_lista, 'Inversa', parent=self) # le manda los pasos para que la ventana lo renderice
+            ventana_pasos = VentanaPasosDetallados(pasos_lista, 'Método de la Matriz Inversa', parent=self) # le manda los pasos para que la ventana lo renderice
             self.windows.append(ventana_pasos)
             ventana_pasos.show()
         except Exception as e:

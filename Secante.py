@@ -136,7 +136,7 @@ class MetodoSecante(QWidget):
                 self, "Aviso de convergencia",
                 f"El método se detuvo tras {n} iteraciones sin converger bajo la tolerancia esperada.\n"
                 f"Último valor calculado: {x_final:.4f}\n"
-                "Revisa la tabla o la gráfica para analizar el comportamiento."
+                "Revisa la tabla para analizar el comportamiento."
             )
         else:  # converge
             QMessageBox.information(
