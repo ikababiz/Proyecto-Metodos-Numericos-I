@@ -6,113 +6,514 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>861</width>
+    <width>450</width>
     <height>621</height>
    </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Arial</family>
+   </font>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QTextEdit" name="textEdit_2">
-   <property name="geometry">
-    <rect>
-     <x>290</x>
-     <y>80</y>
-     <width>431</width>
-     <height>161</height>
-    </rect>
-   </property>
-   <property name="html">
-    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 239, 230);
+color: black</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0" colspan="2">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>48</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-style:italic; text-decoration: underline;&quot;&gt;Choleski&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QTextEdit" name="textEdit_2">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: transparent;</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+       <property name="html">
+        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu Bold'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;La factorización de Choleski nos presenta el siguiente par de sistemas matriciales:&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Para Ax = b, sea L tq A = LLt =&amp;gt; LLtx = b&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    Ltx = v&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    Lv = b&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Con la condición de que A sea definida positiva.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="tamEdit">
-   <property name="geometry">
-    <rect>
-     <x>320</x>
-     <y>290</y>
-     <width>41</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="unidad4button">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>470</y>
-     <width>103</width>
-     <height>33</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Regresar</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>420</x>
-     <y>0</y>
-     <width>81</width>
-     <height>71</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Choleski</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>290</y>
-     <width>171</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Tamaño de la matriz:</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="matButton">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>330</y>
-     <width>151</width>
-     <height>33</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Ingresar matriz</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pasosButton">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>380</y>
-     <width>131</width>
-     <height>33</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Mostrar pasos</string>
-   </property>
-  </widget>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:14pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:4px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-size:x-large; font-weight:600; color:#000000;&quot;&gt;11. Método de Factorización de Cholesky&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:10px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-size:large; font-weight:600; color:#000000;&quot;&gt;11.1. ¿Para qué sirve?&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:4px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;El método de Cholesky es un algoritmo directo de descomposición matricial utilizado para resolver sistemas de ecuaciones lineales cuadrados (&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; ecuaciones con &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; incógnitas) de la forma:&lt;/span&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;&quot; width=&quot;100%&quot; cellspacing=&quot;0&quot; cellpadding=&quot;2&quot;&gt;
+&lt;tr&gt;
+&lt;td width=&quot;40&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;    &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;Ax&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt; = &lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;b&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;    &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td width=&quot;40&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;(56)&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;  &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:4px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;Es aproximadamente el doble de rápido y requiere la mitad de memoria que los métodos generales de factorización LU (Doolittle y Crout), siendo ampliamente empleado en problemas de optimización, mínimos cuadrados y simulación numérica cuando la matriz cumple las condiciones de simetría.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:10px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-size:large; font-weight:600; color:#000000;&quot;&gt;11.2. Fundamento Matemático&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:4px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;El teorema de Cholesky establece que toda matriz &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;A&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; ∈ ℝ&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000; vertical-align:super;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000; vertical-align:super;&quot;&gt;×&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000; vertical-align:super;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; simétrica (&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;A&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; = &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;A&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000; vertical-align:super;&quot;&gt;T&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;) y definida positiva (&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;z&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000; vertical-align:super;&quot;&gt;T&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;Az&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; &amp;gt; 0 para todo &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;z&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; ≠ 0) puede descomponerse de manera única como el producto de una matriz triangular inferior &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;L&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; (con elementos diagonales estrictamente positivos, &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;l&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;ii&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; &amp;gt; 0) y su transpuesta &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;L&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000; vertical-align:super;&quot;&gt;T&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;:&lt;/span&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;&quot; width=&quot;100%&quot; cellspacing=&quot;0&quot; cellpadding=&quot;2&quot;&gt;
+&lt;tr&gt;
+&lt;td width=&quot;40&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;    &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;A&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt; = &lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;LL&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000; vertical-align:super;&quot;&gt;T&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;    &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td width=&quot;40&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;(57)&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;  &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:4px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;Al igual que en otros métodos LU, el sistema original &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;LL&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000; vertical-align:super;&quot;&gt;T&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;x&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; = &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;b&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; se desacopla en dos sistemas triangulares consecutivos:&lt;/span&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;&quot; width=&quot;100%&quot; cellspacing=&quot;0&quot; cellpadding=&quot;2&quot;&gt;
+&lt;tr&gt;
+&lt;td width=&quot;40&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;    &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;Ly&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt; = &lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;b&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;    y    &lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;L&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000; vertical-align:super;&quot;&gt;T&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;x&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt; = &lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;y&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;    &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td width=&quot;40&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;(58)&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;  &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:10px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-size:large; font-weight:600; color:#000000;&quot;&gt;11.3. Fórmulas Principales&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:4px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-weight:600; color:#000000;&quot;&gt;1. Cálculo de los elementos de &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-weight:600; font-style:italic; color:#000000;&quot;&gt;L&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-weight:600; color:#000000;&quot;&gt; (Factorización):&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; Para cada columna &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;j&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; = 1, 2, ..., &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;, se calcula primero el elemento de la diagonal principal y posteriormente los elementos situados por debajo de ella:&lt;/span&gt;&lt;/p&gt;
+&lt;ul type=&quot;square&quot; style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot; align=&quot;justify&quot; style=&quot; margin-top:4px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Elementos de la diagonal principal (&lt;span style=&quot; font-style:italic;&quot;&gt;i&lt;/span&gt; = &lt;span style=&quot; font-style:italic;&quot;&gt;j&lt;/span&gt;):&lt;/li&gt;&lt;/ul&gt;
+&lt;table border=&quot;0&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;&quot; width=&quot;100%&quot; cellspacing=&quot;0&quot; cellpadding=&quot;2&quot;&gt;
+&lt;tr&gt;
+&lt;td width=&quot;40&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;    &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;      &lt;/span&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;&quot; align=&quot;center&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;l&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;jj&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt; = &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;          &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;√&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;          &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; vertical-align:middle; padding-left:2; padding-right:4; padding-top:2; padding-bottom:0;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;            &lt;/span&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;a&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;jj&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt; − &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;                &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;                  &lt;/span&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;&quot; align=&quot;center&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;j&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;−1&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;                    &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;Σ&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;                    &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;k&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;=1&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;                  &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;                                &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;l&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;jk&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000; vertical-align:super;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;                          &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;                        &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;        &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td width=&quot;40&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;(59)&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;  &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul type=&quot;square&quot; style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot; align=&quot;justify&quot; style=&quot; margin-top:4px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Elementos debajo de la diagonal (&lt;span style=&quot; font-style:italic;&quot;&gt;i&lt;/span&gt; = &lt;span style=&quot; font-style:italic;&quot;&gt;j&lt;/span&gt; + 1, &lt;span style=&quot; font-style:italic;&quot;&gt;j&lt;/span&gt; + 2, ..., &lt;span style=&quot; font-style:italic;&quot;&gt;n&lt;/span&gt;):&lt;/li&gt;&lt;/ul&gt;
+&lt;table border=&quot;0&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;&quot; width=&quot;100%&quot; cellspacing=&quot;0&quot; cellpadding=&quot;2&quot;&gt;
+&lt;tr&gt;
+&lt;td width=&quot;40&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;    &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;      &lt;/span&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;&quot; align=&quot;center&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;l&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;ij&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt; = &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;          &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;            &lt;/span&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;&quot; align=&quot;center&quot; cellspacing=&quot;0&quot; cellpadding=&quot;1&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;              &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;l&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;jj&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;            &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;                    &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt; (&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;          &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;a&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;ij&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt; − &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;          &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;            &lt;/span&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;&quot; align=&quot;center&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;j&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;−1&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;              &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;Σ&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;              &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;k&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;=1&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;            &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;                    &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;l&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;ik&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;l&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;jk&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;          &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;              &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;        &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td width=&quot;40&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;(60)&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;  &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:4px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-weight:600; color:#000000;&quot;&gt;2. Sustitución hacia adelante (&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-weight:600; font-style:italic; color:#000000;&quot;&gt;Ly&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-weight:600; color:#000000;&quot;&gt; = &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-weight:600; font-style:italic; color:#000000;&quot;&gt;b&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-weight:600; color:#000000;&quot;&gt;):&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; Se obtiene el vector auxiliar &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;y&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; desde &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;y&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000; vertical-align:sub;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; hasta &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;y&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;:&lt;/span&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;&quot; width=&quot;100%&quot; cellspacing=&quot;0&quot; cellpadding=&quot;2&quot;&gt;
+&lt;tr&gt;
+&lt;td width=&quot;40&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;    &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;      &lt;/span&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;&quot; align=&quot;center&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;y&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000; vertical-align:sub;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt; = &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;          &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;            &lt;/span&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;&quot; align=&quot;center&quot; cellspacing=&quot;0&quot; cellpadding=&quot;1&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;b&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000; vertical-align:sub;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;              &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;l&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000; vertical-align:sub;&quot;&gt;11&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;            &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;                    &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;,   &lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;y&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;i&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt; = &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;          &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;            &lt;/span&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;&quot; align=&quot;center&quot; cellspacing=&quot;0&quot; cellpadding=&quot;1&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;              &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;l&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;ii&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;            &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;                    &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt; (&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;          &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;b&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;i&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt; − &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;          &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;            &lt;/span&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;&quot; align=&quot;center&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;i&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;−1&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;              &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;Σ&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;              &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;j&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;=1&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;            &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;                    &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;l&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;ij&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;y&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;j&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;          &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;          &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;  para &lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;i&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt; = 2, ..., &lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;              &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;        &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td width=&quot;40&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;(61)&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;  &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:4px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-weight:600; color:#000000;&quot;&gt;3. Sustitución hacia atrás (&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-weight:600; font-style:italic; color:#000000;&quot;&gt;L&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-weight:600; font-style:italic; color:#000000; vertical-align:super;&quot;&gt;T&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-weight:600; font-style:italic; color:#000000;&quot;&gt;x&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-weight:600; color:#000000;&quot;&gt; = &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-weight:600; font-style:italic; color:#000000;&quot;&gt;y&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-weight:600; color:#000000;&quot;&gt;):&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; Dado que el elemento (&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;i&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;j&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;) de &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;L&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000; vertical-align:super;&quot;&gt;T&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; corresponde a &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;l&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;ji&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;, se despeja &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;x&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; desde &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;x&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; hasta &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;x&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000; vertical-align:sub;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;:&lt;/span&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;&quot; width=&quot;100%&quot; cellspacing=&quot;0&quot; cellpadding=&quot;2&quot;&gt;
+&lt;tr&gt;
+&lt;td width=&quot;40&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;    &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;      &lt;/span&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;&quot; align=&quot;center&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;x&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt; = &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;          &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;            &lt;/span&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;&quot; align=&quot;center&quot; cellspacing=&quot;0&quot; cellpadding=&quot;1&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;y&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;              &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;l&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;nn&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;            &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;                    &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;,   &lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;x&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;i&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt; = &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;          &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;            &lt;/span&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;&quot; align=&quot;center&quot; cellspacing=&quot;0&quot; cellpadding=&quot;1&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;              &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;l&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;ii&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;            &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;                    &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt; (&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;          &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;y&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;i&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt; − &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;          &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;            &lt;/span&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;&quot; align=&quot;center&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;              &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;Σ&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;              &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;j&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;i&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;+1&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;            &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;                    &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;l&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;ji&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;x&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;j&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;          &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;          &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; vertical-align:middle;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;  para &lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;i&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt; = &lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt; − 1, ..., 1&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;              &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;        &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td width=&quot;40&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;(62)&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;  &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="0" colspan="2">
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>18</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Tamaño de la matriz:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="tamEdit">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item row="2" column="0" colspan="2">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <spacer name="horizontalSpacer_4">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="matButton">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>Ingresar matriz</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_5">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item row="3" column="0" rowspan="2" colspan="2">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="unidad4button">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>Regresar</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pasosButton">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>Mostrar pasos</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_7">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>200</width>
+         <height>100</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">image: url(:/img/Img/MAC.png);</string>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="4" column="1">
+    <spacer name="horizontalSpacer_6">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>413</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../UI/Imagenes.qrc"/>
+ </resources>
  <connections/>
 </ui>
