@@ -336,7 +336,7 @@ class MetodoPotencia(QWidget):
 
         self.windows = []  # ventanas abiertas (matriz tabla) para que Qt no las cierre
         self.sistema = None # para la matriz confirmada
-        self.vetorInicial = None
+        self.vectorInicial = None
 
         # AQUI VAN LOS BOTONES
         self.widget(MATRIZ).clicked.connect(self.ingresar_matriz)

@@ -17,6 +17,7 @@ from Jacobi       import MetodoJacobi
 from Doolittle    import MetodoDoolittle
 from Choleski     import MetodoCholeski
 from Potencia     import MetodoPotencia
+from PotenciaInversa import MetodoPotenciaInversa
 
 
 CARPETA_UI = Path(__file__).parent # carpeta donde están los .ui (la misma que este archivo)
@@ -70,6 +71,8 @@ class MainWindow(QMainWindow):
         # Unidad 5
         pot = MetodoPotencia()
         self.agregar_pagina("Potencia", pot)
+        poti = MetodoPotenciaInversa()
+        self.agregar_pagina("PotenciaInversa", poti)
 
         # navegación: (página donde está el botón, nombre del botón, página destino)
         # el nombre del botón es su objectName en Qt Designer
@@ -115,6 +118,8 @@ class MainWindow(QMainWindow):
 
         self.conectar("Unidad5", "potenciaButton", "Potencia")
         pot.volver.connect(lambda: self.ir_a("Unidad5"))
+        self.conectar("Unidad5", "potenciaInversaButton", "PotenciaInversa")
+        poti.volver.connect(lambda: self.ir_a("Unidad5"))
 
         self.ir_a("Introduccion") # Empieza de predeterminado en la intro
         self.salir = self.paginas["Introduccion"].findChild(QWidget, "salirButton")
