@@ -6,161 +6,458 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>838</width>
-    <height>656</height>
+    <width>606</width>
+    <height>563</height>
    </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Arial</family>
+   </font>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>330</x>
-     <y>20</y>
-     <width>191</width>
-     <height>71</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Jacobi/Gauss-Seidel</string>
-   </property>
-  </widget>
-  <widget class="QRadioButton" name="jacobiRadio">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>200</y>
-     <width>129</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Jacobi</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="calcButton">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>380</y>
-     <width>261</width>
-     <height>33</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Calcular soluciones del sistema</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="tablaButton">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>420</y>
-     <width>131</width>
-     <height>33</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Tabla</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="unidad3button">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>480</y>
-     <width>103</width>
-     <height>33</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Regresar</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="tamEdit">
-   <property name="geometry">
-    <rect>
-     <x>260</x>
-     <y>300</y>
-     <width>41</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="textEdit">
-   <property name="geometry">
-    <rect>
-     <x>200</x>
-     <y>100</y>
-     <width>431</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="html">
-    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 239, 230);
+color: black
+</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>48</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-style:italic; text-decoration: underline;&quot;&gt;Jacobi/Gauss-Seidel&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QTextEdit" name="textEdit">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: transparent;</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+       <property name="html">
+        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu Bold'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsum&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
-  <widget class="QRadioButton" name="gaussSeidelRadio">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>250</y>
-     <width>141</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Gauss-Seidel</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="matButton">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>340</y>
-     <width>151</width>
-     <height>33</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Ingresar matriz</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>90</x>
-     <y>300</y>
-     <width>171</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Tamaño de la matriz:</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="vecButton">
-   <property name="geometry">
-    <rect>
-     <x>240</x>
-     <y>340</y>
-     <width>201</width>
-     <height>33</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Ingresar vector inicial</string>
-   </property>
-  </widget>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:14pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:4px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-weight:600; color:#000000;&quot;&gt;7. Método de Jacobi&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:10px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-weight:600; color:#000000;&quot;&gt;7.1. ¿Para qué sirve?&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:4px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;El método de Jacobi es un algoritmo numérico iterativo utilizado para resolver sistemas de ecuaciones lineales cuadrados (&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; ecuaciones con &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; incógnitas) de la forma:&lt;/span&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot; style=&quot; margin-top:6px; margin-bottom:6px; margin-left:0px; margin-right:0px;&quot; cellspacing=&quot;2&quot; cellpadding=&quot;0&quot;&gt;
+&lt;tr&gt;
+&lt;td&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;Ax&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt; = &lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;b&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;    &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;(32)&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;  &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:4px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;Es especialmente útil en sistemas de gran dimensión y matrices dispersas (con muchos ceros), donde los métodos directos como Gauss o la matriz inversa resultan computacionalmente muy costosos en memoria y tiempo de ejecución.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:10px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-weight:600; color:#000000;&quot;&gt;7.2. Fundamento Matemático&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:4px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;El método consiste en despejar cada incógnita &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;x&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;i&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; de la &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;i&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;-ésima ecuación del sistema (asumiendo que los elementos de la diagonal principal son no nulos, &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;a&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;ii&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; ≠ 0) y generar una sucesión de vectores &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;x&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000; vertical-align:super;&quot;&gt;(0)&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;x&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000; vertical-align:super;&quot;&gt;(1)&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;, ..., &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;x&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000; vertical-align:super;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000; vertical-align:super;&quot;&gt;k&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000; vertical-align:super;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; a partir de una aproximación inicial &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;x&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000; vertical-align:super;&quot;&gt;(0)&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;. En cada iteración &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;k&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;, todas las variables se actualizan de manera simultánea utilizando exclusivamente los valores de la iteración anterior &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;k&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:4px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;Para garantizar la convergencia del método sin importar el vector inicial &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;x&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000; vertical-align:super;&quot;&gt;(0)&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;, una condición suficiente es que la matriz &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;A&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; sea estrictamente diagonalmente dominante&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:10px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-weight:600; color:#000000;&quot;&gt;7.3. Fórmulas Principales&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:4px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-weight:600; color:#000000;&quot;&gt;1. Forma matricial:&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; Descomponiendo la matriz &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;A&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; = &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;D&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; + &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;L&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; + &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;U&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; (donde &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;D&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; es la matriz diagonal, &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;L&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; la triangular inferior estricta y &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;U&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; la triangular superior estricta):&lt;/span&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot; style=&quot; margin-top:6px; margin-bottom:6px; margin-left:0px; margin-right:0px;&quot; cellspacing=&quot;2&quot; cellpadding=&quot;0&quot;&gt;
+&lt;tr&gt;
+&lt;td&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;x&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000; vertical-align:super;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000; vertical-align:super;&quot;&gt;k&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000; vertical-align:super;&quot;&gt;+1)&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt; = &lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;D&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000; vertical-align:super;&quot;&gt;−1&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;b&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt; − (&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;L&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt; + &lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;U&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;x&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000; vertical-align:super;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000; vertical-align:super;&quot;&gt;k&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000; vertical-align:super;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;    &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;(35)&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;  &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:4px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-weight:600; color:#000000;&quot;&gt;2. Criterio de paro (Error estimado):&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; El proceso se detiene cuando la norma de la diferencia entre dos iteraciones consecutivas es menor que una tolerancia ε preestablecida (usualmente con la norma infinito ||·||&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000; vertical-align:sub;&quot;&gt;∞&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;)&lt;/span&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:4px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-weight:600; color:#000000;&quot;&gt;8. Método de Gauss-Seidel&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:10px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-weight:600; color:#000000;&quot;&gt;8.1. ¿Para qué sirve?&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:4px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;El método de Gauss-Seidel es un algoritmo numérico iterativo utilizado para resolver sistemas de ecuaciones lineales cuadrados (&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; ecuaciones con &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; incógnitas) de la forma:&lt;/span&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot; style=&quot; margin-top:6px; margin-bottom:6px; margin-left:0px; margin-right:0px;&quot; cellspacing=&quot;2&quot; cellpadding=&quot;0&quot;&gt;
+&lt;tr&gt;
+&lt;td&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;Ax&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt; = &lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;b&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;    &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;(37)&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;  &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:4px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;Constituye una mejora directa respecto al método de Jacobi, ya que acelera significativamente la velocidad de convergencia y reduce a la mitad los requerimientos de almacenamiento al actualizar las incógnitas de manera secuencial dentro de una misma iteración.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:10px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-weight:600; color:#000000;&quot;&gt;8.2. Fundamento Matemático&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:4px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;Al igual que en Jacobi, se despeja cada variable &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;x&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;i&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; de la &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;i&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;-ésima ecuación suponiendo &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;a&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;ii&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; ≠ 0, partiendo de un vector inicial &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;x&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000; vertical-align:super;&quot;&gt;(0)&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;. La diferencia fundamental radica en que, al calcular &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;x&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;i&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000; vertical-align:super;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000; vertical-align:super;&quot;&gt;k&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000; vertical-align:super;&quot;&gt;+1)&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; se utilizan inmediatamente los valores recién obtenidos &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;x&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000; vertical-align:sub;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000; vertical-align:super;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000; vertical-align:super;&quot;&gt;k&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000; vertical-align:super;&quot;&gt;+1)&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;, ..., &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;x&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;i&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000; vertical-align:sub;&quot;&gt;−1&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000; vertical-align:super;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000; vertical-align:super;&quot;&gt;k&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000; vertical-align:super;&quot;&gt;+1)&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; de la iteración actual, combinados con los valores aún no actualizados &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;x&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;i&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000; vertical-align:sub;&quot;&gt;+1&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000; vertical-align:super;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000; vertical-align:super;&quot;&gt;k&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000; vertical-align:super;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;, ..., &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;x&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000; vertical-align:sub;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000; vertical-align:super;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000; vertical-align:super;&quot;&gt;k&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000; vertical-align:super;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; de la iteración anterior.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:4px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;La convergencia está garantizada para cualquier vector inicial &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;x&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000; vertical-align:super;&quot;&gt;(0)&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; si la matriz &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;A&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; es estrictamente diagonalmente dominante o si &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;A&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; es simétrica y definida positiva&lt;/span&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot; style=&quot; margin-top:6px; margin-bottom:6px; margin-left:0px; margin-right:0px;&quot; cellspacing=&quot;2&quot; cellpadding=&quot;0&quot;&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:10px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-weight:600; color:#000000;&quot;&gt;8.3. Fórmulas Principales&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:4px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-weight:600; color:#000000;&quot;&gt;1. Fórmula iterativa por componentes:&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; Para cada componente &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;i&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; = 1, 2, ..., &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; el nuevo valor se calcula separando los términos ya actualizados (&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;j&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; &amp;lt; &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;i&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;) de los pendientes (&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;j&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; &amp;gt; &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;i&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;)&lt;/span&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot; style=&quot; margin-top:6px; margin-bottom:6px; margin-left:0px; margin-right:0px;&quot; cellspacing=&quot;2&quot; cellpadding=&quot;0&quot;&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:4px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-weight:600; color:#000000;&quot;&gt;2. Forma matricial:&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; Descomponiendo la matriz &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;A&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; = &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;D&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; + &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;L&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; + &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;U&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; (donde &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;D&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; es la matriz diagonal, &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;L&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; la triangular inferior estricta y &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-style:italic; color:#000000;&quot;&gt;U&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; la triangular superior estricta):&lt;/span&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot; style=&quot; margin-top:6px; margin-bottom:6px; margin-left:0px; margin-right:0px;&quot; cellspacing=&quot;2&quot; cellpadding=&quot;0&quot;&gt;
+&lt;tr&gt;
+&lt;td&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;x&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000; vertical-align:super;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000; vertical-align:super;&quot;&gt;k&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000; vertical-align:super;&quot;&gt;+1)&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt; = (&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;D&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt; + &lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;L&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000; vertical-align:super;&quot;&gt;−1&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;b&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt; − &lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000;&quot;&gt;Ux&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000; vertical-align:super;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; font-style:italic; color:#000000; vertical-align:super;&quot;&gt;k&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000; vertical-align:super;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;    &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cambria Math,Times New Roman,serif'; color:#000000;&quot;&gt;(40)&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;  &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:4px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; font-weight:600; color:#000000;&quot;&gt;3. Criterio de paro (Error estimado):&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt; El algoritmo finaliza cuando la distancia máxima entre dos vectores consecutivos es menor que una tolerancia ε preestablecida (norma infinito ||·||&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000; vertical-align:sub;&quot;&gt;∞&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI,Arial,sans-serif'; color:#000000;&quot;&gt;)&lt;/span&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot; style=&quot; margin-top:6px; margin-bottom:6px; margin-left:0px; margin-right:0px;&quot; cellspacing=&quot;2&quot; cellpadding=&quot;0&quot;&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QRadioButton" name="jacobiRadio">
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>18</pointsize>
+          </font>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="text">
+          <string>Jacobi</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="gaussSeidelRadio">
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>18</pointsize>
+          </font>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="text">
+          <string>Gauss-Seidel</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item row="2" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <spacer name="horizontalSpacer_5">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>18</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Tamaño de la matriz:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="tamEdit">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_4">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item row="3" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <spacer name="horizontalSpacer_6">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="matButton">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>Ingresar matriz</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_7">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="vecButton">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>Ingresar vector inicial</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_8">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item row="4" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="unidad3button">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>Regresar</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_9">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QPushButton" name="calcButton">
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>18</pointsize>
+          </font>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="text">
+          <string>Calcular soluciones del sistema</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="tablaButton">
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>18</pointsize>
+          </font>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="text">
+          <string>Tabla</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_10">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>200</width>
+         <height>100</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">image: url(:/img/Img/MAC.png);</string>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../UI/Imagenes.qrc"/>
+ </resources>
  <connections/>
 </ui>
