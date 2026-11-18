@@ -132,7 +132,7 @@ def generar_pasos_detallados(A):
 
     # luego L y U
     latex_L = matriz_a_latex(L, aumentada=False)
-    latex_LT = matriz_a_latex(L.T, aumentada=True)
+    latex_LT = matriz_a_latex(L.T, aumentada=False)
     bloque_LLT = rf"L = {latex_L} L^T = {latex_LT}"
     pasos_lista.append({
         "descripcion": r"Se calcula la matriz 𝕃 con el algoritmo de Choleski. Tal que A = 𝕃𝕃<sup>T</sup>",  # QLabel renderiza bien texto con unicode

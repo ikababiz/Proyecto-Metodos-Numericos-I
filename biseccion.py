@@ -1,5 +1,6 @@
 from pathlib import Path
 import sys
+import Imagenes_rc
 
 from PySide6.QtCore import Signal # esta cosa se necesita para mandar una señal para que MenuPrincipal sepa que hacer
 from PySide6.QtWidgets import (
