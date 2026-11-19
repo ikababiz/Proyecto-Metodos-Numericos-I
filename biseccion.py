@@ -157,6 +157,8 @@ class MetodoBiseccion(QWidget):
         try:
             a = float(self.widget(LINE_A).text())
             b = float(self.widget(LINE_B).text())
+            if abs(a - b) <= EPSILON:
+                raise ValueError("Error: el intervalo entre los valores no deben de ser menor a epsilon.")
             func, label_latex = self.obtener_funcion_actual() # para tener la funcion y el label
 
             c_values = np.array([fila[3] for fila in filas])  # Arreglo con los valores de c_n.

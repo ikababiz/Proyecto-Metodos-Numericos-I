@@ -89,8 +89,7 @@ def latex_a_pixmap(latex, dpi=150):
 def generar_encabezado(n):
     return ["n"] + [f"x_{i + 1}" for i in range(n)]
 
-
-def diagonal_dominante(matriz, vector):
+def diagonal_estrictamente_dominante(matriz, vector):
     rows    = np.size(matriz, 0)
     columns = np.size(matriz, 1)
 
@@ -141,6 +140,59 @@ def diagonal_dominante(matriz, vector):
 
     return matriz_copia, vector_copia, matriz_permutada_copia, vector_permutado_copia, vector_permutado_x_copia, True
 
+
+
+def diagonal_dominante(matriz, vector):
+    rows    = np.size(matriz, 0)
+    columns = np.size(matriz, 1)
+
+    vector_permutado = np.arange(rows)
+    matriz_permutada = np.identity(rows)
+
+    if rows != columns: # creo que esto nunca pasa por previas validaciones
+        return matriz, vector, matriz_permutada, vector_permutado, vector_permutado, False
+
+    valores_abs  = np.zeros(rows)
+    matriz_copia = np.copy(matriz)
+    vector_copia = np.copy(vector)
+    vector_permutado_copia = np.copy(vector_permutado)
+    vector_permutado_x = np.copy(vector_permutado)
+    vector_permutado_x_copia = np.copy(vector_permutado_x)
+
+    matriz_permutada_copia = np.copy(matriz_permutada)
+
+    for i in range(0, rows):
+        aux = abs(matriz_copia.diagonal()[i])
+        valores_abs[i] = np.sum(np.absolute(matriz_copia[i,:])) - aux
+
+        if aux < valores_abs[i]:
+            aux_k, aux_l = i, i
+            for k in range(i, rows):
+                for l in range(i, columns):
+                    aux_dos = abs(matriz_copia[k, l])
+                    if aux < aux_dos:
+                        aux = aux_dos
+                        aux_k, aux_l = k, l
+
+            matriz_copia[:,[i, aux_l]] = matriz_copia[:,[aux_l, i]]
+            matriz_copia[[i, aux_k]]   = matriz_copia[[aux_k, i]]
+
+            matriz_permutada_copia[:,[i, aux_l]] = matriz_permutada_copia[:,[aux_l, i]]
+            matriz_permutada_copia[[i, aux_k]]   = matriz_permutada_copia[[aux_k, i]]
+
+            vector_copia[i], vector_copia[aux_k] = vector_copia[aux_k], vector_copia[i]
+
+            vector_permutado_copia[i], vector_permutado_copia[aux_k] = vector_permutado_copia[aux_k], vector_permutado_copia[i]
+            vector_permutado_x_copia[i], vector_permutado_x_copia[aux_l] = vector_permutado_x_copia[aux_l], vector_permutado_x_copia[i]
+
+            valores_abs[i] = np.sum(np.absolute(matriz_copia[i,:])) - abs(matriz_copia.diagonal()[i])
+
+    for i in range(0, rows):
+        if valores_abs[i] > abs(matriz_copia.diagonal()[i]):
+            return matriz, vector, matriz_permutada, vector_permutado, vector_permutado_x, False
+
+    return matriz_copia, vector_copia, matriz_permutada_copia, vector_permutado_copia, vector_permutado_x_copia, True
+
 def despejar_variables(matriz, vector_b, vector_n, px):
     rows = np.size(matriz, 0)
     columns = np.size(matriz, 1)
@@ -161,7 +213,10 @@ def despejar_variables(matriz, vector_b, vector_n, px):
 
 def calcular_jacobi(matriz, vector_b, vector_n, jacob):
     dominante = True
-    matriz, vector_b, _, pb, px, dominante = diagonal_dominante(matriz, vector_b)
+    if jacob:
+        matriz, vector_b, _, pb, px, dominante = diagonal_dominante(matriz, vector_b)
+    else: # para gauss-seidel
+        matriz, vector_b, _, pb, px, dominante = diagonal_estrictamente_dominante(matriz, vector_b)
 
     if jacob and not dominante:
         raise ValueError("La matriz no se puede reordenar para que sea diagonal dominante.")
@@ -437,7 +492,7 @@ class MetodoJacobi(QWidget):
         if i_final >= MAX_ITER-1:
             nota = f"El método de {nombre} se detuvo tras {i_final} iteraciones sin converger bajo la tolerancia esperada.\n"
         else:
-            nota = f"Convergencia alcanzada con el metodo de {nombre} tras {i_final} iteraciones."
+            nota = f"Convergencia alcanzada con el metodo de {nombre} tras {i_final+1} iteraciones."
 
         try:
             VentanaLaTeX("Solución aproximada del sistema", latex, nota = nota, parent=self).exec()

@@ -117,6 +117,8 @@ class MetodoFalsaPosicion(QWidget):
         try:
             a = float(self.widget(LINE_A).text())
             b = float(self.widget(LINE_B).text())
+            if abs(a - b) <= EPSILON:
+                raise ValueError("Error: el intervalo entre los valores no deben de ser menor a epsilon.")
             func, _ = self.obtener_funcion_actual()
             return calcular_regula_falsi(func, a, b)
         except ValueError as e:

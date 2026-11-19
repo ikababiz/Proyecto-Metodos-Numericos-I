@@ -44,10 +44,12 @@ def calcular_newton(f, df, x_i, epsilon=EPSILON, max_iter=200):
         fx_i = f(x_i)
         dfx_i = df(x_i)
         filas.append((i, x_i, fx_i, dfx_i))
-        if dfx_i == 0 or abs(x_i - x_aux) < epsilon:
+        if i > 2 and abs(fx_i) < epsilon:
+            break
+        if dfx_i == 0:
             break
         x_aux = x_i
-        x_i = x_aux - fx_i/dfx_i
+        x_i = x_aux - fx_i / dfx_i
         i += 1
     return filas
 

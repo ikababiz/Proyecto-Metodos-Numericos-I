@@ -29,8 +29,8 @@ BTN_VOLVER = "unidad2button"
 def xi(xc, xu, fc, fu):
     faux = fu - fc
     if abs(faux) < EPSILON:
-        return xu, False
-    return xu - fu*(xu-xc)/(faux), True
+        return xu
+    return xu - fu*(xu-xc)/(faux)
 
 def calcular_secante(f, x_c, x_u, max_iter=200):
     xc = float(x_c)
@@ -44,20 +44,20 @@ def calcular_secante(f, x_c, x_u, max_iter=200):
     filas.append((1, x_c, fc))
     filas.append((2, x_u, fu))
 
-    xaux, _ = xi(xc, xu, fc, fu)
+    xaux = xi(xc, xu, fc, fu)
     faux = f(xaux)
 
     i = 3
-    still = True
-    while still and i < max_iter:
+    while i < max_iter and abs(fc - fu) > EPSILON:
         filas.append((i, xaux, faux))
         xc = xu
         fc = fu
         xu = xaux
         fu = faux
-        xaux, still = xi(xc, xu, fc, fu)
+        xaux = xi(xc, xu, fc, fu)
         faux = f(xaux)
         i += 1
+
     return filas
 
 def cargar_ui(nombre): # metodo de carga generico
@@ -119,7 +119,9 @@ class MetodoSecante(QWidget):
         try:
             x_c = float(self.widget(LINE_XC).text())
             x_u = float(self.widget(LINE_XU).text())
-            func, _ = self.obtener_funcion_actual()
+            if abs(x_c - x_u) <= EPSILON:
+                raise ValueError("Error: el intervalo entre los valores no deben de ser menor a epsilon.")
+            func, _ = self.obtener_funcalcular_secantecion_actual()
             return calcular_secante(func, x_c, x_u)
         except ValueError as e:
             QMessageBox.warning(self, "Datos inválidos", str(e))
