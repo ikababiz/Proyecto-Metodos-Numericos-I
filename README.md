@@ -16,6 +16,10 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 ```
+Instalación de MiKTeX en debian:
+```bash
+sudo apt install miktex
+```
 
 **Windows:**
 ```powershell
@@ -25,6 +29,9 @@ python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
 ```
+Instalación de MiKTeX:
+Ejecuta el archivo `Instalar_Dependencias.bat`. Esto instalará MiKTeX y lo configurará automáticamente para renderizar las fórmulas matemáticas.
+
 
 Estructura del repositorio  
 ├── main.py                  ← menú principal  
