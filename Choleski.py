@@ -301,7 +301,7 @@ class VentanaPasosDetallados(QDialog):
 
             lbl_titulo = QLabel(f"<b>Paso {idx}:</b> {paso.get('descripcion', '')}") # obtiene la descripcion si la hay
             lbl_titulo.setAlignment(Qt.AlignCenter)
-            lbl_titulo.setStyleSheet("color: black; background-color: white;")
+            lbl_titulo.setStyleSheet("color: black; background-color: #f4f4f4; padding: 6px; border-radius: 4px;")
             paso_box.addWidget(lbl_titulo)
 
             for latex_str in paso.get('latex_bloques', []):
@@ -318,9 +318,9 @@ class VentanaPasosDetallados(QDialog):
                     paso_box.addWidget(lbl_err)
 
                 # separador
-                line = QLabel("<hr>")
-                paso_box.addWidget(line)
-                layout_container.addLayout(paso_box)
+                #line = QLabel("<hr>")
+                #paso_box.addWidget(line)
+            layout_container.addLayout(paso_box)
 
         scroll.setWidget(container)
 
@@ -369,16 +369,24 @@ class MetodoCholeski(QWidget):
     # AQUI van los metodos que dan funcion a cada widget
 
     def leer_tamano(self):
-        try:
-            n = int(self.widget(TAMANO).text()) # falta hacer que empiece vacio
-            if n >= TAM_MIN and n <= TAM_MAX:
-                return n
-            else:
-                raise ValueError("Ingrese un tamaño válido. "
-                                 f"El tamaño del sistema debe de estar entre {TAM_MIN} y {TAM_MAX}")
-        except ValueError as e:
-            QMessageBox.warning(self, "Datos inválidos", str(e))
-            return None
+            texto = self.widget(TAMANO).text().strip()
+            try:
+                if not texto:
+                    raise ValueError("El campo de tamaño está vacío. Por favor, ingrese un número.")
+                
+                try:
+                    n = int(texto)
+                except ValueError:
+                    raise ValueError("El valor ingresado no es válido. Debe ser un número entero.")
+        
+                if n >= TAM_MIN and n <= TAM_MAX:
+                    return n
+                else:
+                    raise ValueError(f"El tamaño del sistema debe estar entre {TAM_MIN} y {TAM_MAX}.")
+                    
+            except ValueError as e:
+                QMessageBox.warning(self, "Datos inválidos", str(e))
+                return None
 
     def ingresar_matriz(self):
         n = self.leer_tamano()

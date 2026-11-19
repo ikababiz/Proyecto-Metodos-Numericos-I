@@ -1,4 +1,6 @@
 import sys
+import os
+from PySide6.QtGui import QIcon
 from pathlib import Path
 
 from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QWidget, QPushButton, QLineEdit, QTextEdit, QComboBox, \
@@ -43,6 +45,9 @@ class MainWindow(QMainWindow):
         for nombre in ["Introduccion", "Unidades", "Unidad2", "Unidad3", "Unidad4", "Unidad5"]: # aqui se modifica si se agregan mas disenios
             self.agregar_pagina(nombre, cargar_ui(nombre)) # cada diseño se carga y se agrega a la pila
 
+        ruta_icono = self.resolver_ruta("icon.ico") # icono
+        self.setWindowIcon(QIcon(ruta_icono))
+        
         # cada metodo tiene su propia clase
         # Unidad 2
         bis = MetodoBiseccion()
@@ -141,10 +146,16 @@ class MainWindow(QMainWindow):
 
     def ir_a(self, nombre):
         self.pila.setCurrentWidget(self.paginas[nombre])
+        
+    def resolver_ruta(self, ruta_relativa):
+        if hasattr(sys, '_MEIPASS'):
+            return os.path.join(sys._MEIPASS, ruta_relativa)
+        return os.path.join(os.path.abspath("."), ruta_relativa)
 
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+    app.setStyle("Fusion")
     w = MainWindow()
     w.show()
     sys.exit(app.exec())

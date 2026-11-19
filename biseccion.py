@@ -123,6 +123,8 @@ class MetodoBiseccion(QWidget):
             a = float(self.widget(LINE_A).text())
             b = float(self.widget(LINE_B).text())
             func, _ = self.obtener_funcion_actual()
+            if abs(a - b) <= EPSILON:
+                            raise ValueError("Error: el intervalo entre los valores no deben de ser menor a epsilon.")
             return calcular_biseccion(func, a, b)
         except ValueError as e:
             QMessageBox.warning(self, "Datos inválidos.", str(e))

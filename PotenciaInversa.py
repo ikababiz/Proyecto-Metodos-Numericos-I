@@ -112,11 +112,13 @@ def generar_pasos_detallados(A, V0):
 
         y = B * x_actual
         c_actual = max(y, key=lambda val: abs(val.evalf())) # para evitar calculo simbolico durante las iteraciones
+        if c_actual == 0:
+            raise ValueError("Error: el producto dio el vector cero, pruebe otro vector inicial.")
         x_siguiente = (1 / c_actual) * y
 
         error = float(abs(c_actual - c_anterior).evalf())
 
-        if j < 5: # Solo las primeras 2 iteraciones se ven en LaTeX
+        if j < 3: # Solo las primeras 3 iteraciones se ven en LaTeX
 
             latex_y = matriz_a_latex(y)
             latex_x_actual = matriz_a_latex(x_actual)
@@ -148,7 +150,8 @@ def generar_pasos_detallados(A, V0):
     latex_x_actual = matriz_a_latex(x_float)
     bloque_eigenvector = rf"\overline{{x}}^{{({j-1})}} = {latex_x_actual}"
     pasos_lista.append({
-        "descripcion": rf"Tras {j} iteraciones, el vector propio dominante aproximado es:",
+        "descripcion": (rf"Tras {j} iteraciones, el vector propio asociado al menor valor propio aproximado es:" if error <= EPSILON else
+                    rf"Aviso de convergencia: no se alcanzó la tolerancia en {j} iteraciones, el último vector calculado es:"),
         "latex_bloques": [bloque_eigenvector]
     })
 
@@ -303,7 +306,7 @@ class VentanaPasosDetallados(QDialog):
 
             lbl_titulo = QLabel(f"<b>Fase {idx}:</b> {paso.get('descripcion', '')}") # obtiene la descripcion si la hay
             lbl_titulo.setAlignment(Qt.AlignCenter)
-            lbl_titulo.setStyleSheet("color: black; background-color: white;")
+            lbl_titulo.setStyleSheet("color: black; background-color: #f4f4f4; padding: 6px; border-radius: 4px;")
             paso_box.addWidget(lbl_titulo)
 
             for latex_str in paso.get('latex_bloques', []):
@@ -373,16 +376,24 @@ class MetodoPotenciaInversa(QWidget):
     # AQUI van los metodos que dan funcion a cada widget
 
     def leer_tamano(self):
+        texto = self.widget(TAMANO).text().strip()
         try:
-            n = int(self.widget(TAMANO).text()) # falta hacer que empiece vacio
+            if not texto:
+                raise ValueError("El campo de tamaño está vacío. Por favor, ingrese un número.")
+            
+            try:
+                n = int(texto)
+            except ValueError:
+                raise ValueError("El valor ingresado no es válido. Debe ser un número entero.")
+    
             if n >= TAM_MIN and n <= TAM_MAX:
                 return n
             else:
-                raise ValueError("Ingrese un tamaño válido. "
-                                 f"El tamaño del sistema debe de estar entre {TAM_MIN} y {TAM_MAX}")
+                raise ValueError(f"El tamaño del sistema debe estar entre {TAM_MIN} y {TAM_MAX}.")
+                
         except ValueError as e:
             QMessageBox.warning(self, "Datos inválidos", str(e))
-            return None
+            return None 
 
     def ingresar_matriz(self):
         n = self.leer_tamano()

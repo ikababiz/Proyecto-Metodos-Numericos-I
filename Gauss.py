@@ -507,16 +507,24 @@ class MetodoGauss(QWidget):
     # AQUI van los metodos que dan funcion a cada widget
 
     def leer_tamano(self):
+        texto = self.widget(TAMANO).text().strip()
         try:
-            n = int(self.widget(TAMANO).text()) # falta hacer que empiece vacio
+            if not texto:
+                raise ValueError("El campo de tamaño está vacío. Por favor, ingrese un número.")
+            
+            try:
+                n = int(texto)
+            except ValueError:
+                raise ValueError("El valor ingresado no es válido. Debe ser un número entero.")
+    
             if n >= TAM_MIN and n <= TAM_MAX:
                 return n
             else:
-                raise ValueError("Ingrese un tamaño válido. "
-                                 f"El tamaño del sistema debe de estar entre {TAM_MIN} y {TAM_MAX}")
+                raise ValueError(f"El tamaño del sistema debe estar entre {TAM_MIN} y {TAM_MAX}.")
+                
         except ValueError as e:
             QMessageBox.warning(self, "Datos inválidos", str(e))
-            return None
+            return None        
 
     def ingresar_matriz(self):
         n = self.leer_tamano()

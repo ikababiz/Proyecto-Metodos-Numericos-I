@@ -121,7 +121,7 @@ class MetodoSecante(QWidget):
             x_u = float(self.widget(LINE_XU).text())
             if abs(x_c - x_u) <= EPSILON:
                 raise ValueError("Error: el intervalo entre los valores no deben de ser menor a epsilon.")
-            func, _ = self.obtener_funcalcular_secantecion_actual()
+            func, _ = self.obtener_funcion_actual()
             return calcular_secante(func, x_c, x_u)
         except ValueError as e:
             QMessageBox.warning(self, "Datos inválidos", str(e))

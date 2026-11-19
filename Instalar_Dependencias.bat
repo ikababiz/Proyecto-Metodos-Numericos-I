@@ -13,8 +13,10 @@ set PATH=%PATH%;%LOCALAPPDATA%\Programs\MiKTeX\miktex\bin\x64;%ProgramFiles%\MiK
 
 initexmf --set-config-value=[Core]AutoInstall=1
 
+echo En caso de que el sistema te pida instalar dependencias, desactiva la casilla para no volver a ver el mensaje
+echo y da click en "Install"
 echo.
-echo ====================================
-echo Ya puedes ejecutar MenuPrincipal.exe
-echo ====================================
+echo ====================================================
+echo Ya puedes ejecutar MiNI.exe
+echo ====================================================
 pause

@@ -256,6 +256,8 @@ class VerMatriz(QDialog):
     def __init__(self, datos, parent=None, aumentada=True):
         super().__init__(parent)
         self.setWindowTitle("Confirmar")
+        self.setStyleSheet("background-color: white; color: black;")
+
 
         latex = matriz_a_latex(datos, aumentada)
         pixmap = latex_a_pixmap(latex)
@@ -263,6 +265,8 @@ class VerMatriz(QDialog):
         imagen = QLabel()
         imagen.setPixmap(pixmap)
         imagen.setAlignment(Qt.AlignCenter)
+        imagen.setStyleSheet("background-color: white;")
+
 
         pregunta = QLabel("¿Los datos ingresados son correctos?")
         pregunta.setAlignment(Qt.AlignCenter)
@@ -272,6 +276,7 @@ class VerMatriz(QDialog):
         botones.addButton("No, hacer cambios", QDialogButtonBox.RejectRole)
         botones.accepted.connect(self.accept)
         botones.rejected.connect(self.reject)
+        botones.setStyleSheet("background-color: #f0f0f0; color: black;")
 
         layout = QVBoxLayout(self)
         layout.addWidget(imagen)
@@ -366,14 +371,17 @@ class VentanaLaTeX(QDialog):
     def __init__(self, titulo, latex, nota="", parent=None):
         super().__init__(parent)
         self.setWindowTitle(titulo)
+        self.setStyleSheet("background-color: white; color: black;")
         imagen = QLabel()
         imagen.setPixmap(latex_a_pixmap(latex))
         imagen.setAlignment(Qt.AlignCenter)
+        imagen.setStyleSheet("background-color: white;")
         layout = QVBoxLayout(self)
         layout.addWidget(imagen)
         if nota:
             etiqueta = QLabel(nota)
             etiqueta.setAlignment(Qt.AlignCenter)
+            etiqueta.setStyleSheet("color: black; background-color: white;")            
             layout.addWidget(etiqueta)
         botones = QDialogButtonBox(QDialogButtonBox.Ok)
         botones.accepted.connect(self.accept)
@@ -416,15 +424,24 @@ class MetodoJacobi(QWidget):
         return widg
 
     def leer_tamano(self):
-        try:
-            n = int(self.widget(TAMANO).text())
-            if TAM_MIN <= n <= TAM_MAX:
-                return n
-            else:
-                raise ValueError(f"Ingrese un tamaño válido entre {TAM_MIN} y {TAM_MAX}.")
-        except ValueError as e:
-            QMessageBox.warning(self, "Datos inválidos", str(e))
-            return None
+            texto = self.widget(TAMANO).text().strip()
+            try:
+                if not texto:
+                    raise ValueError("El campo de tamaño está vacío. Por favor, ingrese un número.")
+                
+                try:
+                    n = int(texto)
+                except ValueError:
+                    raise ValueError("El valor ingresado no es válido. Debe ser un número entero.")
+        
+                if n >= TAM_MIN and n <= TAM_MAX:
+                    return n
+                else:
+                    raise ValueError(f"El tamaño del sistema debe estar entre {TAM_MIN} y {TAM_MAX}.")
+                    
+            except ValueError as e:
+                QMessageBox.warning(self, "Datos inválidos", str(e))
+                return None
 
     def leer_filas(self):
         if self.sistema is None: # Si no hay sistema ingresado
